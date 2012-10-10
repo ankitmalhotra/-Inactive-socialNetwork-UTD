@@ -7,8 +7,16 @@
 //
 
 #import "messengerViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface messengerViewController ()
+{
+    CLLocationManager *locManager;
+    IBOutlet UILabel *currLoc;
+    
+}
+
+-(NSString *)calcPos;
 
 @end
 
@@ -17,7 +25,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    locManager=[[CLLocationManager alloc]init];
+    locManager.desiredAccuracy=kCLLocationAccuracyHundredMeters;
+    locManager.distanceFilter=kCLDistanceFilterNone;
+    currLoc.text=[self calcPos];
+}
+
+-(NSString *)calcPos
+{
+    NSString *curPos=[NSString stringWithFormat:@"latitude %f, longitude %f",locManager.location.coordinate.latitude,locManager.location.coordinate.longitude];
+    return curPos;
 }
 
 - (void)didReceiveMemoryWarning
