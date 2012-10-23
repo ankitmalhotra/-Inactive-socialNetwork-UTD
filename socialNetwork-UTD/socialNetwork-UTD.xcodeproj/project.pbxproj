@@ -19,6 +19,8 @@
 		FE0AFCF616255A10000A92C9 /* messengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0AFCF516255A10000A92C9 /* messengerViewController.m */; };
 		FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0AFCF716255A10000A92C9 /* messengerViewController.xib */; };
 		FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */; };
+		FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC2C0816314087000B2329 /* MapKit.framework */; };
+		FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDD41D162E37B600B88CFA /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		FE0AFCF516255A10000A92C9 /* messengerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = messengerViewController.m; sourceTree = "<group>"; };
 		FE0AFCF816255A10000A92C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/messengerViewController.xib; sourceTree = "<group>"; };
 		FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FEEC2C0816314087000B2329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FEFDD41D162E37B600B88CFA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */,
+				FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */,
 				FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */,
 				FE0AFCDD16255A10000A92C9 /* UIKit.framework in Frameworks */,
 				FE0AFCDF16255A10000A92C9 /* Foundation.framework in Frameworks */,
@@ -76,6 +82,8 @@
 		FE0AFCDB16255A10000A92C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEEC2C0816314087000B2329 /* MapKit.framework */,
+				FEFDD41D162E37B600B88CFA /* Security.framework */,
 				FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */,
 				FE0AFCDC16255A10000A92C9 /* UIKit.framework */,
 				FE0AFCDE16255A10000A92C9 /* Foundation.framework */,
@@ -227,7 +235,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -246,7 +254,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -259,7 +267,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialNetwork-UTD/socialNetwork-UTD-Prefix.pch";
 				INFOPLIST_FILE = "socialNetwork-UTD/socialNetwork-UTD-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -270,7 +280,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialNetwork-UTD/socialNetwork-UTD-Prefix.pch";
 				INFOPLIST_FILE = "socialNetwork-UTD/socialNetwork-UTD-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -294,6 +306,7 @@
 				FE0AFCFE16255A10000A92C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
