@@ -100,10 +100,10 @@
     
     /*Start XML request*/
     recordResults=NO;
-    NSURL *url=[NSURL URLWithString:@""];
+    NSURL *url=[NSURL URLWithString:@"http://www.google.com"];
     NSMutableURLRequest *mutableURL = [NSMutableURLRequest requestWithURL:url];
     [mutableURL addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [mutableURL addValue:@"" forHTTPHeaderField:@"SOAPAction"];
+    [mutableURL addValue:@"http://www.google.com" forHTTPHeaderField:@"SOAPAction"];
     [mutableURL setHTTPMethod:@"POST"];
     [mutableURL setHTTPBody:[soapResults dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -117,8 +117,6 @@
     {
         NSLog(@"Connection is null..");
     }
-    
-    
 }
 
 
