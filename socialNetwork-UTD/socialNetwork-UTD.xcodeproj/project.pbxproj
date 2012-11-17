@@ -19,6 +19,10 @@
 		FE0AFCF616255A10000A92C9 /* messengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0AFCF516255A10000A92C9 /* messengerViewController.m */; };
 		FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0AFCF716255A10000A92C9 /* messengerViewController.xib */; };
 		FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */; };
+		FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4718401652C4B1004B4ED0 /* loginViewController.m */; };
+		FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4718411652C4B1004B4ED0 /* loginViewController.xib */; };
+		FEABE8A916464064000F27FD /* createKeyPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = FEABE8A816464064000F27FD /* createKeyPairs.m */; };
+		FECCDC5F165727DC0084447E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECCDC5E165727DC0084447E /* CFNetwork.framework */; };
 		FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC2C0816314087000B2329 /* MapKit.framework */; };
 		FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDD41D162E37B600B88CFA /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +45,12 @@
 		FE0AFCF516255A10000A92C9 /* messengerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = messengerViewController.m; sourceTree = "<group>"; };
 		FE0AFCF816255A10000A92C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/messengerViewController.xib; sourceTree = "<group>"; };
 		FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FE47183F1652C4B1004B4ED0 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loginViewController.h; path = ../loginViewController.h; sourceTree = "<group>"; };
+		FE4718401652C4B1004B4ED0 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loginViewController.m; path = ../loginViewController.m; sourceTree = "<group>"; };
+		FE4718411652C4B1004B4ED0 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = loginViewController.xib; path = ../loginViewController.xib; sourceTree = "<group>"; };
+		FEABE8A716464064000F27FD /* createKeyPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createKeyPairs.h; sourceTree = "<group>"; };
+		FEABE8A816464064000F27FD /* createKeyPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createKeyPairs.m; sourceTree = "<group>"; };
+		FECCDC5E165727DC0084447E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FEEC2C0816314087000B2329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FEFDD41D162E37B600B88CFA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -50,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECCDC5F165727DC0084447E /* CFNetwork.framework in Frameworks */,
 				FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */,
 				FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */,
 				FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */,
@@ -82,6 +93,7 @@
 		FE0AFCDB16255A10000A92C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FECCDC5E165727DC0084447E /* CFNetwork.framework */,
 				FEEC2C0816314087000B2329 /* MapKit.framework */,
 				FEFDD41D162E37B600B88CFA /* Security.framework */,
 				FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */,
@@ -99,6 +111,11 @@
 				FE0AFCEC16255A10000A92C9 /* messengerAppDelegate.m */,
 				FE0AFCF416255A10000A92C9 /* messengerViewController.h */,
 				FE0AFCF516255A10000A92C9 /* messengerViewController.m */,
+				FEABE8A716464064000F27FD /* createKeyPairs.h */,
+				FEABE8A816464064000F27FD /* createKeyPairs.m */,
+				FE47183F1652C4B1004B4ED0 /* loginViewController.h */,
+				FE4718401652C4B1004B4ED0 /* loginViewController.m */,
+				FE4718411652C4B1004B4ED0 /* loginViewController.xib */,
 				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
 				FE0AFCE316255A10000A92C9 /* Supporting Files */,
 			);
@@ -176,6 +193,7 @@
 				FE0AFCF116255A10000A92C9 /* Default@2x.png in Resources */,
 				FE0AFCF316255A10000A92C9 /* Default-568h@2x.png in Resources */,
 				FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */,
+				FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +207,8 @@
 				FE0AFCE916255A10000A92C9 /* main.m in Sources */,
 				FE0AFCED16255A10000A92C9 /* messengerAppDelegate.m in Sources */,
 				FE0AFCF616255A10000A92C9 /* messengerViewController.m in Sources */,
+				FEABE8A916464064000F27FD /* createKeyPairs.m in Sources */,
+				FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,11 +284,18 @@
 		FE0AFCFD16255A10000A92C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rakesh Kapoor (27DNJ5JEU2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rakesh Kapoor (27DNJ5JEU2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialNetwork-UTD/socialNetwork-UTD-Prefix.pch";
 				INFOPLIST_FILE = "socialNetwork-UTD/socialNetwork-UTD-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-I/usr/include/libxml2";
+				OTHER_LDFLAGS = "-lxml2";
+				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3F19D394-3852-409B-8EF1-E1F69EB324C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F19D394-3852-409B-8EF1-E1F69EB324C2";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -277,11 +304,18 @@
 		FE0AFCFE16255A10000A92C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rakesh Kapoor (27DNJ5JEU2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rakesh Kapoor (27DNJ5JEU2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialNetwork-UTD/socialNetwork-UTD-Prefix.pch";
 				INFOPLIST_FILE = "socialNetwork-UTD/socialNetwork-UTD-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-I/usr/include/libxml2";
+				OTHER_LDFLAGS = "-lxml2";
+				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3F19D394-3852-409B-8EF1-E1F69EB324C2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "054EF5B8-913D-470C-9748-3C285DB3CCD1";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

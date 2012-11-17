@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "messengerViewController.h"
 
-@class messengerViewController;
+
+@class messengerViewController,loginViewController;
 
 @interface messengerAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) messengerViewController *viewController;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
 
 @end
