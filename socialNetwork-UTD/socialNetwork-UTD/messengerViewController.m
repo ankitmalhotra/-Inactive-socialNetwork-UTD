@@ -8,9 +8,8 @@
 
 #import "messengerViewController.h"
 #import "messengerAppDelegate.h"
-#import "loginViewController.h"
-//#import "createKeyPairs.h"
 #import <CoreLocation/CoreLocation.h>
+#import "secureMessageRSA.h"
 //#import <Security/Security.h>
 //#import <CommonCrypto/CommonCrypto.h>
 //#import <CommonCrypto/CommonDigest.h>
@@ -39,7 +38,7 @@
     UILabel *loginUserNameLabel;
     UILabel *loginPasswordLabel;
     */
-    
+
     
     /*Crypto Buffers*/
     size_t cipherBufferSize;
@@ -50,21 +49,17 @@
     /*User credentials*/
     NSString *username;
     NSString *userPwd;
-
+    
 }
 
 @end
 
 
-
 @implementation messengerViewController
-
-/*key identifiers*/
-static const UInt8 publicKeyIdentifier[] = "pubKey\0";
-static const UInt8 privateKeyIdentifier[] = "privKey\0";
 
 - (void)viewDidLoad
 {
+    NSLog(@"val is: %d",_appearCheck);
     /*Get Location*/
     [super viewDidLoad];
     
@@ -80,10 +75,10 @@ static const UInt8 privateKeyIdentifier[] = "privKey\0";
     
     /*Start XML request*/
     recordResults=NO;
-    NSURL *url=[NSURL URLWithString:@"http://localhost:8080/testConn/services/Converter?wsdl"];
+    NSURL *url=[NSURL URLWithString:@"http://localhost:8080/GroupMessagingApp/services/GroupsDataServiceService?wsdl"];
     NSMutableURLRequest *mutableURL = [NSMutableURLRequest requestWithURL:url];
     [mutableURL addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [mutableURL addValue:@"http://localhost:8080/testConn/services/Converter?wsdl" forHTTPHeaderField:@"SOAPAction"];
+    [mutableURL addValue:@"http://localhost:8080/GroupMessagingApp/services/GroupsDataServiceService?wsdl" forHTTPHeaderField:@"SOAPAction"];
     [mutableURL setHTTPMethod:@"POST"];
     [mutableURL setHTTPBody:[soapResults dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -97,19 +92,51 @@ static const UInt8 privateKeyIdentifier[] = "privKey\0";
     {
         NSLog(@"Connection is null..");
     }
-    
+    if(_appearCheck==0)
+    {
+        [self showLoginView];
+    }
+}
+
++(NSInteger)readFlag
+{
+   // return appearCheck;
+}
+
++(void)setFlag:(NSInteger)flagVal
+{
+    //appearCheck=flagVal;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     /*load up login view*/
-    if(appearCheck==0)
+    NSLog(@"check_flag: %d",_appearCheck);
+    /*load up login view*/
+    if(_appearCheck==0)
     {
+        _appearCheck=1;
         loginViewController *loginVw=[[loginViewController alloc]initWithNibName:nil bundle:nil];
         [self presentViewController:loginVw animated:YES completion:NULL];
-        appearCheck=1;
     }
 }
+
+-(void)showLoginView
+{
+        /*load up login view
+    if(appearCheck==0)
+    {
+        NSLog(@"inside");
+        appearCheck=1;
+        UINavigationController *navigateView=[[UINavigationController alloc]init];
+        [self.view addSubview:navigateView.view];
+        loginViewController *loginVw=[[loginViewController alloc]initWithNibName:nil bundle:nil];
+        [navigateView pushViewController:loginVw animated:YES];
+        [loginVw release];
+    }
+    */ 
+}
+
 
 
 /*XML delegate methods*/
@@ -228,10 +255,11 @@ static const UInt8 privateKeyIdentifier[] = "privKey\0";
 }
 
 
-/*resign the keyboard on pressing return*/
--(IBAction)returnKeyBoard:(id)sender
+
+/*resign the keyboard on touching background*/
+-(IBAction)backgroundTouched:(id)sender
 {
-    [sender resignFirstResponder];
+    [messageVw resignFirstResponder];
 }
 
 
@@ -240,129 +268,12 @@ static const UInt8 privateKeyIdentifier[] = "privKey\0";
 {
     NSString *messageData;
     messageData=messageVw.text;
-    [self encryptData:messageData];
+    [secureMessageRSA encryptMessage:messageData];
 }
 
 -(IBAction)callDecrypt
 {
-    [self decryptData];
-}
-
-/*Generate pub/priv key pairs*/
--(void)generateKeyPairs
-{    
-    OSStatus status = noErr;
-    
-    NSMutableDictionary *privateKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *publicKeyAttr = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *keyPairAttr = [[NSMutableDictionary alloc] init];
-    
-    
-    NSData * publicTag = [NSData dataWithBytes:publicKeyIdentifier
-                                        length:strlen((const char *)publicKeyIdentifier)];
-    NSData * privateTag = [NSData dataWithBytes:privateKeyIdentifier
-                                         length:strlen((const char *)privateKeyIdentifier)];
-    
-    
-    SecKeyRef publicKey = NULL;
-    SecKeyRef privateKey = NULL;
-    
-    [keyPairAttr setObject:(id)kSecAttrKeyTypeRSA
-                    forKey:(id)kSecAttrKeyType];
-    [keyPairAttr setObject:[NSNumber numberWithInt:1024]
-                    forKey:(id)kSecAttrKeySizeInBits];
-    
-    [publicKeyAttr setObject:[NSNumber numberWithBool:YES]
-                      forKey:(id)kSecAttrIsPermanent];
-    [publicKeyAttr setObject:publicTag
-                      forKey:(id)kSecAttrApplicationTag];
-    
-    [privateKeyAttr setObject:[NSNumber numberWithBool:YES]
-                       forKey:(id)kSecAttrIsPermanent];
-    [privateKeyAttr setObject:privateTag
-                       forKey:kSecAttrApplicationTag];
-    
-    [keyPairAttr setObject:privateKeyAttr
-                    forKey:(id)kSecPrivateKeyAttrs];
-    [keyPairAttr setObject:publicKeyAttr
-                    forKey:(id)kSecPublicKeyAttrs];
-    
-    
-    status=SecKeyGeneratePair((CFDictionaryRef)keyPairAttr, &publicKey, &privateKey);
-    NSLog(@"%ld",status);
-    NSLog(@"pub: %@",(NSString *)publicKey);
-    NSLog(@"priv: %@",(NSString *)privateKey);
-    
-    
-    if(privateKeyAttr) [privateKeyAttr release];
-    if(publicKeyAttr) [publicKeyAttr release];
-    if(keyPairAttr) [keyPairAttr release];
-    if(publicKey) CFRelease(publicKey);
-    if(privateKey) CFRelease(privateKey);
-    
-}
-
--(void)encryptData:(NSString*)plainData
-{
-    OSStatus sanityCheck = noErr;
-    int msgLength = [plainData length];
-    uint8_t data[msgLength];
-    for(int i=0;i<msgLength;i++)
-    {
-        data[i]=[plainData characterAtIndex:i] ;
-    }
-    SecKeyRef pubKey = NULL;      /*holds the pub key*/
-    NSData *pubTag=[NSData dataWithBytes:publicKeyIdentifier length:strlen((const char *)publicKeyIdentifier)];
-    
-    NSMutableDictionary *pubKeyDict = [[NSMutableDictionary alloc]init];
-    [pubKeyDict setObject:(id)kSecClassKey forKey:(id)kSecClass];
-    [pubKeyDict setObject:pubTag forKey:(id)kSecAttrApplicationTag];
-    [pubKeyDict setObject:(id)kSecAttrKeyTypeRSA forKey:(id)kSecAttrKeyType];
-    [pubKeyDict setObject:[NSNumber numberWithBool:YES] forKey:(id)kSecReturnRef];
-   
-    /*copy the key from keychain to pubkey*/
-    sanityCheck =
-             SecItemCopyMatching((CFDictionaryRef)pubKeyDict,(CFTypeRef *)&pubKey);
-    
-    /*Allocate crypto buffer*/
-    cipherBufferSize=SecKeyGetBlockSize(pubKey);
-    cipherBuffer=malloc(cipherBufferSize);
-    /*Start Encrypting*/
-    sanityCheck=
-        SecKeyEncrypt(pubKey, kSecPaddingPKCS1, data, sizeof(data), cipherBuffer, &cipherBufferSize);
-    NSLog(@"Encrypted text: %s",cipherBuffer);
-    
-    if(pubKey) CFRelease(pubKey);
-    if(pubKeyDict) CFRelease(pubKeyDict);
-    //free(cipherBuffer);          /*transmit over network first & then free*/
-}
-
-
--(void)decryptData
-{
-    OSStatus sanityCheck=noErr;
-    
-    SecKeyRef privKey=NULL;
-    NSData *privTag=[[NSData alloc]initWithBytes:privateKeyIdentifier length:strlen((const char *)privateKeyIdentifier)];
-    
-    NSMutableDictionary *privKeyDict=[[NSMutableDictionary alloc]init];
-    [privKeyDict setObject:(id)kSecClassKey forKey:(id)kSecClass];
-    [privKeyDict setObject:privTag forKey:(id)kSecAttrApplicationTag];
-    [privKeyDict setObject:(id)kSecAttrKeyTypeRSA forKey:(id)kSecAttrKeyType];
-    [privKeyDict setObject:[NSNumber numberWithBool:YES] forKey:(id)kSecReturnRef];
-    
-    sanityCheck=
-          SecItemCopyMatching((CFDictionaryRef)privKeyDict, (CFTypeRef *)&privKey);
-    
-    /*Allocate crypto buffer*/
-    plainBufferSize=SecKeyGetBlockSize(privKey);
-    plainBuffer=malloc(plainBufferSize);
-    /*start decrypting*/
-    sanityCheck=
-          SecKeyDecrypt(privKey, kSecPaddingPKCS1, cipherBuffer, cipherBufferSize, plainBuffer, &plainBufferSize);
-    
-    NSLog(@"Decrypted text: %s",plainBuffer);
-    free(cipherBuffer);
+    [secureMessageRSA decryptMessage];
 }
 
 

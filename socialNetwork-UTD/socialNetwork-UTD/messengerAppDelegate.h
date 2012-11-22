@@ -10,7 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "messengerViewController.h"
 
-
 @class messengerViewController,loginViewController;
 
 @interface messengerAppDelegate : UIResponder <UIApplicationDelegate>

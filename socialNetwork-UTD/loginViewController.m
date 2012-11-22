@@ -22,20 +22,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    appearFlagCheck+=1;
+    NSLog(@"loaded");
+    NSLog(@"flagval: %d",appearFlagCheck);
+    if(appearFlagCheck>1)
+    {
+        messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
+        [self presentViewController:mainVw animated:YES completion:NULL];
+    }
 }
 
 -(IBAction)swichBackMain
 {
+    messengerViewController *msgViewCntrl = nil;
+    //msgViewCntrl.appearCheck=1;
+    NSLog(@"finally set: %d",msgViewCntrl.appearCheck);
     username = nameField.text;
     userPwd = passwordField.text;
-    /*Generate Key Pairs, call encryption routine*/
-    messengerViewController *messengerHandler = nil;
-    [messengerHandler generateKeyPairs];
+    /*Generate Key Pairs routine*/
+    [secureMessageRSA generateKeyPairs];
     messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
     [self presentViewController:mainVw animated:YES completion:NULL];
-    NSLog(@"val: %d");
-    
-    
+    //[messengerViewController setFlag:1];
 }
 
 /*resign the keyboard on pressing return*/
