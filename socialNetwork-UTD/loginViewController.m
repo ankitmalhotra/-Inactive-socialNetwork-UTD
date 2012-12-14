@@ -22,40 +22,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    appearFlagCheck+=1;
+    spinningView.hidden=TRUE;
+    appearFlagCheck=1;
     NSLog(@"loaded");
-    NSLog(@"flagval: %d",appearFlagCheck);
-    if(appearFlagCheck>1)
-    {
-        messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
-        [self presentViewController:mainVw animated:YES completion:NULL];
-    }
+    NSLog(@"flagval: %d",appearFlagCheck);    
 }
 
 -(IBAction)swichBackMain
 {
-    messengerViewController *msgViewCntrl = nil;
-    //msgViewCntrl.appearCheck=1;
-    NSLog(@"finally set: %d",msgViewCntrl.appearCheck);
+    /*Accept username and password entered by user*/
     username = nameField.text;
     userPwd = passwordField.text;
+    
+    /*Signal username to main view*/
+    messengerViewController *obj=[[messengerViewController alloc]init];
+    [obj getUserId:username];
+    
+    /*Start SOAP request processing*/
+    spinningView.hidden=FALSE;
+    [spinningView startAnimating];
+    [obj processRequest];
+    
     /*Generate Key Pairs routine*/
     [secureMessageRSA generateKeyPairs];
+    
+    /*Push back main view*/
     messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
     [self presentViewController:mainVw animated:YES completion:NULL];
-    //[messengerViewController setFlag:1];
+    [spinningView stopAnimating];
 }
 
-/*resign the keyboard on pressing return*/
+/*Resign the keyboard on pressing return*/
 -(IBAction)returnKeyBoard:(id)sender
 {
     [sender resignFirstResponder];
 }
 
+-(IBAction)backgroundTouched:(id)sender
+{
+    [nameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 @end

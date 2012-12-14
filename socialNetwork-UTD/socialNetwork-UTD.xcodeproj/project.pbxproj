@@ -19,9 +19,20 @@
 		FE0AFCF616255A10000A92C9 /* messengerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0AFCF516255A10000A92C9 /* messengerViewController.m */; };
 		FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0AFCF716255A10000A92C9 /* messengerViewController.xib */; };
 		FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */; };
+		FE1FCFA6166E7D7D009E61C7 /* groupsTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */; };
+		FE1FCFA7166E7D7D009E61C7 /* groupsTableViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */; };
+		FE1FCFAB166E80A0009E61C7 /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1FCFAA166E80A0009E61C7 /* countries.plist */; };
 		FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4718401652C4B1004B4ED0 /* loginViewController.m */; };
 		FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4718411652C4B1004B4ED0 /* loginViewController.xib */; };
 		FEABE8A916464064000F27FD /* secureMessageRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = FEABE8A816464064000F27FD /* secureMessageRSA.m */; };
+		FEADE646167BD65700F9C037 /* ax23.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE637167BD65700F9C037 /* ax23.m */; };
+		FEADE647167BD65700F9C037 /* ax25.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE639167BD65700F9C037 /* ax25.m */; };
+		FEADE648167BD65700F9C037 /* GroupsDataServiceServiceSvc.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE63B167BD65700F9C037 /* GroupsDataServiceServiceSvc.m */; };
+		FEADE649167BD65700F9C037 /* NSDate+ISO8601Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE63D167BD65700F9C037 /* NSDate+ISO8601Parsing.m */; };
+		FEADE64A167BD65700F9C037 /* NSDate+ISO8601Unparsing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE63F167BD65700F9C037 /* NSDate+ISO8601Unparsing.m */; };
+		FEADE64B167BD65700F9C037 /* USAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE641167BD65700F9C037 /* USAdditions.m */; };
+		FEADE64C167BD65700F9C037 /* USGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE643167BD65700F9C037 /* USGlobals.m */; };
+		FEADE64D167BD65700F9C037 /* xsd.m in Sources */ = {isa = PBXBuildFile; fileRef = FEADE645167BD65700F9C037 /* xsd.m */; };
 		FECCDC5F165727DC0084447E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECCDC5E165727DC0084447E /* CFNetwork.framework */; };
 		FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC2C0816314087000B2329 /* MapKit.framework */; };
 		FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDD41D162E37B600B88CFA /* Security.framework */; };
@@ -45,11 +56,31 @@
 		FE0AFCF516255A10000A92C9 /* messengerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = messengerViewController.m; sourceTree = "<group>"; };
 		FE0AFCF816255A10000A92C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/messengerViewController.xib; sourceTree = "<group>"; };
 		FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FE1FCFA3166E7D7C009E61C7 /* groupsTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groupsTableViewViewController.h; sourceTree = "<group>"; };
+		FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = groupsTableViewViewController.m; sourceTree = "<group>"; };
+		FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = groupsTableViewViewController.xib; sourceTree = "<group>"; };
+		FE1FCFAA166E80A0009E61C7 /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		FE47183F1652C4B1004B4ED0 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loginViewController.h; path = ../loginViewController.h; sourceTree = "<group>"; };
 		FE4718401652C4B1004B4ED0 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loginViewController.m; path = ../loginViewController.m; sourceTree = "<group>"; };
 		FE4718411652C4B1004B4ED0 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = loginViewController.xib; path = ../loginViewController.xib; sourceTree = "<group>"; };
 		FEABE8A716464064000F27FD /* secureMessageRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secureMessageRSA.h; sourceTree = "<group>"; };
 		FEABE8A816464064000F27FD /* secureMessageRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secureMessageRSA.m; sourceTree = "<group>"; };
+		FEADE636167BD65700F9C037 /* ax23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ax23.h; sourceTree = "<group>"; };
+		FEADE637167BD65700F9C037 /* ax23.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ax23.m; sourceTree = "<group>"; };
+		FEADE638167BD65700F9C037 /* ax25.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ax25.h; sourceTree = "<group>"; };
+		FEADE639167BD65700F9C037 /* ax25.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ax25.m; sourceTree = "<group>"; };
+		FEADE63A167BD65700F9C037 /* GroupsDataServiceServiceSvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsDataServiceServiceSvc.h; sourceTree = "<group>"; };
+		FEADE63B167BD65700F9C037 /* GroupsDataServiceServiceSvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsDataServiceServiceSvc.m; sourceTree = "<group>"; };
+		FEADE63C167BD65700F9C037 /* NSDate+ISO8601Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Parsing.h"; sourceTree = "<group>"; };
+		FEADE63D167BD65700F9C037 /* NSDate+ISO8601Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Parsing.m"; sourceTree = "<group>"; };
+		FEADE63E167BD65700F9C037 /* NSDate+ISO8601Unparsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Unparsing.h"; sourceTree = "<group>"; };
+		FEADE63F167BD65700F9C037 /* NSDate+ISO8601Unparsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Unparsing.m"; sourceTree = "<group>"; };
+		FEADE640167BD65700F9C037 /* USAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAdditions.h; sourceTree = "<group>"; };
+		FEADE641167BD65700F9C037 /* USAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAdditions.m; sourceTree = "<group>"; };
+		FEADE642167BD65700F9C037 /* USGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USGlobals.h; sourceTree = "<group>"; };
+		FEADE643167BD65700F9C037 /* USGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USGlobals.m; sourceTree = "<group>"; };
+		FEADE644167BD65700F9C037 /* xsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd.h; sourceTree = "<group>"; };
+		FEADE645167BD65700F9C037 /* xsd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xsd.m; sourceTree = "<group>"; };
 		FECCDC5E165727DC0084447E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FEEC2C0816314087000B2329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FEFDD41D162E37B600B88CFA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -107,15 +138,19 @@
 		FE0AFCE216255A10000A92C9 /* socialNetwork-UTD */ = {
 			isa = PBXGroup;
 			children = (
+				FE8BEF2B1664476D007FCA3B /* wsdl2ObjC */,
 				FE8BEF2A165B3D68007FCA3B /* cryptoFiles */,
 				FE0AFCEB16255A10000A92C9 /* messengerAppDelegate.h */,
 				FE0AFCEC16255A10000A92C9 /* messengerAppDelegate.m */,
 				FE0AFCF416255A10000A92C9 /* messengerViewController.h */,
 				FE0AFCF516255A10000A92C9 /* messengerViewController.m */,
+				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
 				FE47183F1652C4B1004B4ED0 /* loginViewController.h */,
 				FE4718401652C4B1004B4ED0 /* loginViewController.m */,
 				FE4718411652C4B1004B4ED0 /* loginViewController.xib */,
-				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
+				FE1FCFA3166E7D7C009E61C7 /* groupsTableViewViewController.h */,
+				FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */,
+				FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */,
 				FE0AFCE316255A10000A92C9 /* Supporting Files */,
 			);
 			path = "socialNetwork-UTD";
@@ -125,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				FE0AFCE416255A10000A92C9 /* socialNetwork-UTD-Info.plist */,
+				FE1FCFAA166E80A0009E61C7 /* countries.plist */,
 				FE0AFCE516255A10000A92C9 /* InfoPlist.strings */,
 				FE0AFCE816255A10000A92C9 /* main.m */,
 				FE0AFCEA16255A10000A92C9 /* socialNetwork-UTD-Prefix.pch */,
@@ -142,6 +178,29 @@
 				FEABE8A816464064000F27FD /* secureMessageRSA.m */,
 			);
 			name = cryptoFiles;
+			sourceTree = "<group>";
+		};
+		FE8BEF2B1664476D007FCA3B /* wsdl2ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				FEADE636167BD65700F9C037 /* ax23.h */,
+				FEADE637167BD65700F9C037 /* ax23.m */,
+				FEADE638167BD65700F9C037 /* ax25.h */,
+				FEADE639167BD65700F9C037 /* ax25.m */,
+				FEADE63A167BD65700F9C037 /* GroupsDataServiceServiceSvc.h */,
+				FEADE63B167BD65700F9C037 /* GroupsDataServiceServiceSvc.m */,
+				FEADE63C167BD65700F9C037 /* NSDate+ISO8601Parsing.h */,
+				FEADE63D167BD65700F9C037 /* NSDate+ISO8601Parsing.m */,
+				FEADE63E167BD65700F9C037 /* NSDate+ISO8601Unparsing.h */,
+				FEADE63F167BD65700F9C037 /* NSDate+ISO8601Unparsing.m */,
+				FEADE640167BD65700F9C037 /* USAdditions.h */,
+				FEADE641167BD65700F9C037 /* USAdditions.m */,
+				FEADE642167BD65700F9C037 /* USGlobals.h */,
+				FEADE643167BD65700F9C037 /* USGlobals.m */,
+				FEADE644167BD65700F9C037 /* xsd.h */,
+				FEADE645167BD65700F9C037 /* xsd.m */,
+			);
+			name = wsdl2ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +261,8 @@
 				FE0AFCF316255A10000A92C9 /* Default-568h@2x.png in Resources */,
 				FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */,
 				FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */,
+				FE1FCFA7166E7D7D009E61C7 /* groupsTableViewViewController.xib in Resources */,
+				FE1FCFAB166E80A0009E61C7 /* countries.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +278,15 @@
 				FE0AFCF616255A10000A92C9 /* messengerViewController.m in Sources */,
 				FEABE8A916464064000F27FD /* secureMessageRSA.m in Sources */,
 				FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */,
+				FE1FCFA6166E7D7D009E61C7 /* groupsTableViewViewController.m in Sources */,
+				FEADE646167BD65700F9C037 /* ax23.m in Sources */,
+				FEADE647167BD65700F9C037 /* ax25.m in Sources */,
+				FEADE648167BD65700F9C037 /* GroupsDataServiceServiceSvc.m in Sources */,
+				FEADE649167BD65700F9C037 /* NSDate+ISO8601Parsing.m in Sources */,
+				FEADE64A167BD65700F9C037 /* NSDate+ISO8601Unparsing.m in Sources */,
+				FEADE64B167BD65700F9C037 /* USAdditions.m in Sources */,
+				FEADE64C167BD65700F9C037 /* USGlobals.m in Sources */,
+				FEADE64D167BD65700F9C037 /* xsd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

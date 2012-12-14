@@ -10,11 +10,12 @@
 #import "messengerAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import "secureMessageRSA.h"
+//#import "GroupsDataServiceServiceSvc.h"
 //#import <Security/Security.h>
 //#import <CommonCrypto/CommonCrypto.h>
 //#import <CommonCrypto/CommonDigest.h>
 //#import <MapKit/MapKit.h>
-
+#define kGeoCodingString @"http://maps.google.com/maps/geo?q=%f,%f&output=csv"
 
 @interface messengerViewController ()
 {
@@ -59,7 +60,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"val is: %d",_appearCheck);
+    NSLog(@"val is: %d",appearCheck);
     /*Get Location*/
     [super viewDidLoad];
     
@@ -71,187 +72,158 @@
     {
         [locManager startUpdatingLocation];
     }
-    
-    
-    /*Start XML request*/
-    recordResults=NO;
-    NSURL *url=[NSURL URLWithString:@"http://localhost:8080/GroupMessagingApp/services/GroupsDataServiceService?wsdl"];
-    NSMutableURLRequest *mutableURL = [NSMutableURLRequest requestWithURL:url];
-    [mutableURL addValue:@"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [mutableURL addValue:@"http://localhost:8080/GroupMessagingApp/services/GroupsDataServiceService?wsdl" forHTTPHeaderField:@"SOAPAction"];
-    [mutableURL setHTTPMethod:@"POST"];
-    [mutableURL setHTTPBody:[soapResults dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLConnection *conn = [[NSURLConnection alloc]initWithRequest:mutableURL delegate:self];
-    if(conn)
-    {
-        webData=[[NSMutableData data]retain];
-        NSLog(@"Connection is acive: ");
-    }
-    else
-    {
-        NSLog(@"Connection is null..");
-    }
-    if(_appearCheck==0)
-    {
-        [self showLoginView];
-    }
-}
-
-+(NSInteger)readFlag
-{
-   // return appearCheck;
-}
-
-+(void)setFlag:(NSInteger)flagVal
-{
-    //appearCheck=flagVal;
+            
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     /*load up login view*/
-    NSLog(@"check_flag: %d",_appearCheck);
-    /*load up login view*/
-    if(_appearCheck==0)
+    NSLog(@"check_flag: %d",appearCheck);
+    if(appearCheck==0)
     {
-        _appearCheck=1;
+        appearCheck=1;
         loginViewController *loginVw=[[loginViewController alloc]initWithNibName:nil bundle:nil];
         [self presentViewController:loginVw animated:YES completion:NULL];
     }
 }
 
--(void)showLoginView
+
+/*SOAP request call*/
+-(void)processRequest
 {
-        /*load up login view
-    if(appearCheck==0)
-    {
-        NSLog(@"inside");
-        appearCheck=1;
-        UINavigationController *navigateView=[[UINavigationController alloc]init];
-        [self.view addSubview:navigateView.view];
-        loginViewController *loginVw=[[loginViewController alloc]initWithNibName:nil bundle:nil];
-        [navigateView pushViewController:loginVw animated:YES];
-        [loginVw release];
+    /*
+    CurrencyConvertorSoapBinding* binding = [CurrencyConvertorSvc CurrencyConvertorSoapBinding];
+    CurrencyConvertorSoapBindingResponse* response;
+    CurrencyConvertorSvc_ConversionRate* request = [[CurrencyConvertorSvc_ConversionRate alloc]init];
+    request.FromCurrency =  CurrencyConvertorSvc_Currency_enumFromString(@"USD");
+    request.ToCurrency = CurrencyConvertorSvc_Currency_enumFromString(@"INR");
+    response = [binding ConversionRateUsingParameters:request];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self processResponse:response];
+    });
+    */
+    
+    GroupsDataServiceServiceSoap11Binding *bindingSOAP=[GroupsDataServiceServiceSvc GroupsDataServiceServiceSoap11Binding];
+    GroupsDataServiceServiceSoap11BindingResponse *bindingResponse;
+    GroupsDataServiceServiceSvc_GetGroupsData *request=[[GroupsDataServiceServiceSvc_GetGroupsData alloc]init];
+    request.UserId=username;
+    bindingResponse=[bindingSOAP GetGroupsDataUsingParameters:request];
+    NSLog(@"done processing request.. %@",bindingResponse);
+    dispatch_async(dispatch_get_main_queue(), ^{[self processResponse:bindingResponse];});
+    
+}
+ 
+/*SOAP response call*/
+-(void)processResponse:(GroupsDataServiceServiceSoap11BindingResponse *)response
+{
+    /*
+    NSArray *responseBodyParts = response.bodyParts;
+    id bodyPart;    
+    @try{
+        bodyPart = [responseBodyParts objectAtIndex:0]; // Assuming just 1 part in response which is fine
+        NSLog(@"type is: %@",bodyPart);
     }
-    */ 
-}
-
-
-
-/*XML delegate methods*/
--(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
-{
-    [webData setLength:0];
-    NSHTTPURLResponse * httpResponse;
-    httpResponse = (NSHTTPURLResponse *) response;
-    //NSLog(@"HTTP error %zd", (ssize_t) httpResponse.statusCode);
+    
+    @catch (NSException* exception)
+    {
+        NSLog(@"err type is: %@",exception);
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Error while trying to process request" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    if ([bodyPart isKindOfClass:[SOAPFault class]]) {
+        
+        NSString* errorMesg = ((SOAPFault *)bodyPart).simpleFaultString;
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:errorMesg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    else if([bodyPart isKindOfClass:[CurrencyConvertorSvc_ConversionRateResponse class]]) {
+        CurrencyConvertorSvc_ConversionRateResponse* rateResponse = bodyPart;
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:[NSString stringWithFormat:@"Currency Conversion Rate is %@",rateResponse.ConversionRateResult] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    */
+    
+    NSArray *responseBodyParts = response.bodyParts;
+    NSLog(@"bodyparts: %@",responseBodyParts);
+    id bodyPart;
+    @try
+    {
+        bodyPart = [responseBodyParts objectAtIndex:0]; // Assuming just 1 part in response which is fine
+        NSLog(@"type is: %@",bodyPart);
+    }
+    @catch (NSException* exception)
+    {
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Error while trying to process request" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    if ([bodyPart isKindOfClass:[SOAPFault class]])
+    {
+        
+        NSString* errorMesg = ((SOAPFault *)bodyPart).simpleFaultString;
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:errorMesg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+    else if([bodyPart isKindOfClass:[GroupsDataServiceServiceSvc_GetGroupsDataResponse class]])
+    {
+        GroupsDataServiceServiceSvc_GetGroupsDataResponse* groupResponse = bodyPart;
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:[NSString stringWithFormat:@"Response data is %@",groupResponse.return_] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];        
+    } 
     
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+
+/*Setting the username received from loginView*/
+-(void)getUserId:(NSString *)userId
 {
-    [webData appendData:data];
-    NSLog(@"webdata: %@", data);
-    
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError*)error
-{
-	NSLog(@"error with the connection");
-	[connection release];
-	[webData release];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	NSLog(@"DONE. Received bytes %d", [webData length]);
-	NSString *theXML = [[NSString alloc] initWithBytes:[webData mutableBytes] length:[webData length] encoding:NSUTF8StringEncoding];
-	NSLog(@"xml %@",theXML);
-	[theXML release];
-    
-	if(xmlParser)
-	{
-		[xmlParser release];
-	}
-	
-	xmlParser = [[NSXMLParser alloc] initWithData:webData];
-	//[xmlParser setDelegate:self];
-	[xmlParser setShouldResolveExternalEntities:YES];
-	[xmlParser parse];
-    
-	[connection release];
-	[webData release];
-}
-
-
-/*XML Response handlers*/
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
-{
-    NSLog(@"parse started..");
-	if([elementName isEqualToString:@"Symbol"] || [elementName isEqualToString:@"Last"] || [elementName isEqualToString:@"Time"] )
-	{
-        if(!soapResults)
-		{
-			soapResults = [[NSMutableString alloc]init];
-		}
-		recordResults = YES;
-	}
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    NSLog(@"parse found chars..");
-
-	if(recordResults)
-	{
-		[soapResults appendString:string];
-	}
-	
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    NSLog(@"parse results..");
-
-	if([elementName isEqualToString:@"Symbol"] || [elementName isEqualToString:@"Last"] || [elementName isEqualToString:@"Time"] )
-	{
-		recordResults = NO;
-		NSLog(@"SOAP Results: %@", soapResults);
-		[soapResults release];
-		soapResults = nil;
-	}
+    username=userId;
+    NSLog(@"name is: %@",username);
 }
 
 
 
-
-/*Function calls*/
-
+/*Location update function calls*/
 
 -(void) locationManager:(CLLocationManager*)locManager
     didUpdateToLocation:(CLLocation*)newLocation
-           fromLocation:(CLLocation*) oldLocation
+           fromLocation:(CLLocation*)oldLocation
 {
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 1.0)
     {
         NSString *showPos=[NSString stringWithFormat:@"lat: %f,long: %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude ];
-        currLoc.text=showPos;
+        double latPos=newLocation.coordinate.latitude;
+        double longPos=newLocation.coordinate.longitude;
         NSLog(@"Current user position: %@",showPos);
+        /*
         typedef double CLLocationDistance;
         CLLocationDistance dist = [oldLocation distanceFromLocation:newLocation];
         NSLog(@"distance moved: %f meters",(dist));
         NSString *distmoved=[NSString stringWithFormat:@"You just moved: %f meters",(dist)];
-        distMoved.text=distmoved;
+        */
+        
+        
+        /*Reverse Geo-coding*/
+        NSString *urlLoc=[NSString stringWithFormat:kGeoCodingString,latPos,longPos];
+        NSError *errMsg;
+        NSString *locString=[NSString stringWithContentsOfURL:[NSURL URLWithString:urlLoc] encoding:NSASCIIStringEncoding error:&errMsg];
+        locString = [locString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSLog(@"You're at: %@",[locString substringFromIndex:6]);
+        messageVw.text=@"@ ";
+        messageVw.text=[locString substringFromIndex:6];
     }
-    
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
+-(BOOL)shouldAutorotate
 {
-    return UIInterfaceOrientationIsPortrait(orientation); /*Only portrait supported*/
+    return NO;
 }
 
 
@@ -263,19 +235,28 @@
 }
 
 
+/*show groups listing*/
+-(IBAction)showGroups
+{
+    groupsTableViewViewController *tblView=[[groupsTableViewViewController alloc]initWithNibName:nil bundle:nil];
+    [self presentViewController:tblView animated:YES completion:NULL];
+    
+}
 
--(IBAction)callEncrypt
+/*show friends listing */
+-(IBAction)showFriends
+{
+    NSLog(@"frineds will be shown soon..");
+}
+
+-(IBAction)postMessage
 {
     NSString *messageData;
     messageData=messageVw.text;
+    /*Call encryption routine to encrypt the message*/
     [secureMessageRSA encryptMessage:messageData];
-}
-
--(IBAction)callDecrypt
-{
     [secureMessageRSA decryptMessage];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

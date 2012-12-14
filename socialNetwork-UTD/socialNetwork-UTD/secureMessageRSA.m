@@ -106,6 +106,7 @@ uint8_t *plainBuffer;
     
     if(pubKey) CFRelease(pubKey);
     if(pubKeyDict) CFRelease(pubKeyDict);
+    if(plainBuffer) free(plainBuffer);
     //free(cipherBuffer);          /*transmit over network first & then free*/
 }
 

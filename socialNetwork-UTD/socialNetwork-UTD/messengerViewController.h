@@ -7,26 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupsDataServiceServiceSvc.h"
+#import "groupsTableViewViewController.h"
+//#import "CurrencyConvertorSvc.h"
 
+
+static int appearCheck=0;
 
 @interface messengerViewController : UIViewController
 {
-    IBOutlet UILabel *currLoc;
-    IBOutlet UILabel *distMoved;
-    IBOutlet UIButton *encryptBtn;
-    IBOutlet UIButton *decryptBtn;
+    IBOutlet UIButton *postButton;
     IBOutlet UITextView *messageVw;
-    @public NSInteger appearCheck;
+    IBOutlet UIBarButtonItem *friendsBtn;
+    IBOutlet UIBarButtonItem *groupsBtn;
+    //IBOutlet UINavigationController *tblView;
 }
 
-@property(readwrite,assign)NSInteger appearCheck;
-
 -(IBAction)backgroundTouched:(id)sender;
--(void)showLoginView;
-+(void)setFlag:(NSInteger)flagVal;
-+(NSInteger)readFlag;
--(IBAction)callEncrypt;
--(IBAction)callDecrypt;
+-(void)getUserId:(NSString *)userId;
+-(void)processRequest;
+-(void)processResponse:(GroupsDataServiceServiceSoap11BindingResponse *)response;
+-(IBAction)postMessage;
+-(IBAction)showGroups;
+-(IBAction)showFriends;
 
 
 @end
