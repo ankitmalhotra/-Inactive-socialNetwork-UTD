@@ -1,59 +1,58 @@
 //
-//  groupsTableViewViewController.m
+//  friendsViewController.m
 //  socialNetwork-UTD
 //
-//  Created by Ankit Malhotra on 04/12/12.
+//  Created by Ankit Malhotra on 17/12/12.
 //  Copyright (c) 2012 Ankit Malhotra. All rights reserved.
 //
 
-#import "groupsTableViewViewController.h"
+#import "friendsViewController.h"
 #import "messengerViewController.h"
 
-@interface groupsTableViewViewController ()
+@interface friendsViewController ()
 
 @end
 
-@implementation groupsTableViewViewController
+@implementation friendsViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    messengerViewController *grabGroupsObj=[[messengerViewController alloc] init];
-    groupList=[grabGroupsObj getGroupObjects];
+    messengerViewController *grabFriendObj=[[messengerViewController alloc] init];
+    friendList=[grabFriendObj getFriendObjects];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark - Table view data source
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //return [countries count];
-    return [arr count];
+    return [friendList count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [[friendList allKeys] objectAtIndex:section];
 }
 */
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [groupList count];
+    return [friendList count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"GroupCell";
+    static NSString *CellIdentifier = @"FriendCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    selectedIndex=[groupList objectAtIndex:[indexPath row]];
+    selectedIndex=[friendList objectAtIndex:[indexPath row]];
     cell.textLabel.text=selectedIndex;
     return cell;
 }
@@ -62,25 +61,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedIndex=[groupList objectAtIndex:[indexPath row]];
+	selectedIndex=[friendList objectAtIndex:[indexPath row]];
     messengerViewController *setIndexObj=[[messengerViewController alloc] init];
     [setIndexObj setSelectedIndex:selectedIndex];
     [self dismissViewControllerAnimated:YES completion:NULL];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
-
 -(IBAction)backToMain
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-
--(IBAction)createGroup
-{
-    UIAlertView *createAlert=[[UIAlertView alloc]initWithTitle:@"New Group" message:[NSString stringWithFormat:@"Enter the group name"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [createAlert show];
 }
 
 
@@ -89,5 +79,10 @@
     return NO;
 }
 
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
 
 @end

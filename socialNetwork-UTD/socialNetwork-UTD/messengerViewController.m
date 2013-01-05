@@ -51,12 +51,16 @@
     NSString *username;
     NSString *userPwd;
     
+    NSString *selectedIndex;
+    
+    
 }
 
 @end
 
 
 @implementation messengerViewController
+
 
 - (void)viewDidLoad
 {
@@ -110,8 +114,8 @@
     request.UserId=username;
     bindingResponse=[bindingSOAP GetGroupsDataUsingParameters:request];
     NSLog(@"done processing request.. %@",bindingResponse);
+    NSLog(@"at server: %@",request.UserId);
     dispatch_async(dispatch_get_main_queue(), ^{[self processResponse:bindingResponse];});
-    
 }
  
 /*SOAP response call*/
@@ -164,7 +168,6 @@
     
     if ([bodyPart isKindOfClass:[SOAPFault class]])
     {
-        
         NSString* errorMesg = ((SOAPFault *)bodyPart).simpleFaultString;
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:errorMesg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -174,10 +177,30 @@
         GroupsDataServiceServiceSvc_GetGroupsDataResponse* groupResponse = bodyPart;
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:[NSString stringWithFormat:@"Response data is %@",groupResponse.return_] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];        
-    } 
-    
+    }
+
 }
 
+/*Define group values to be shown in group tableview*/
+-(NSArray *)getGroupObjects
+{
+    groups=[[NSArray alloc]initWithObjects:@"Physics",@"Chemistry",@"Mathematics", nil];
+    return groups;
+}
+
+/*Define friend values to be shown in friend tableview*/
+-(NSArray *)getFriendObjects
+{
+    friends=[[NSArray alloc]initWithObjects:@"Ankit",@"Pranav", nil];
+    return friends;
+}
+
+/*Receive the index selected in any tableview*/
+-(void)setSelectedIndex:(NSString *)indexVal
+{
+    selectedIndex=indexVal;
+    NSLog(@"index selected: %@",selectedIndex);
+}
 
 /*Setting the username received from loginView*/
 -(void)getUserId:(NSString *)userId
@@ -196,7 +219,7 @@
 {
     NSDate* eventDate = newLocation.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 1.0)
+    if (abs(howRecent) < 100000.0)
     {
         NSString *showPos=[NSString stringWithFormat:@"lat: %f,long: %f",newLocation.coordinate.latitude,newLocation.coordinate.longitude ];
         double latPos=newLocation.coordinate.latitude;
@@ -216,8 +239,6 @@
         NSString *locString=[NSString stringWithContentsOfURL:[NSURL URLWithString:urlLoc] encoding:NSASCIIStringEncoding error:&errMsg];
         locString = [locString stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         NSLog(@"You're at: %@",[locString substringFromIndex:6]);
-        messageVw.text=@"@ ";
-        messageVw.text=[locString substringFromIndex:6];
     }
 }
 
@@ -228,40 +249,33 @@
 
 
 
-/*resign the keyboard on touching background*/
--(IBAction)backgroundTouched:(id)sender
-{
-    [messageVw resignFirstResponder];
-}
-
-
 /*show groups listing*/
 -(IBAction)showGroups
 {
-    groupsTableViewViewController *tblView=[[groupsTableViewViewController alloc]initWithNibName:nil bundle:nil];
-    [self presentViewController:tblView animated:YES completion:NULL];
+    groupsTableViewViewController *gTblView=[[groupsTableViewViewController alloc]initWithNibName:nil bundle:nil];
+    [self presentViewController:gTblView animated:YES completion:NULL];
     
 }
 
 /*show friends listing */
 -(IBAction)showFriends
 {
-    NSLog(@"frineds will be shown soon..");
+    friendsViewController *fTblView=[[friendsViewController alloc]initWithNibName:nil bundle:nil];
+    [self presentViewController:fTblView animated:YES completion:NULL];
 }
 
--(IBAction)postMessage
+/*load view for new post*/
+-(IBAction)createPost
 {
-    NSString *messageData;
-    messageData=messageVw.text;
-    /*Call encryption routine to encrypt the message*/
-    [secureMessageRSA encryptMessage:messageData];
-    [secureMessageRSA decryptMessage];
+    newPostViewController *newPostView=[[newPostViewController alloc]initWithNibName:nil bundle:nil];
+    [self presentViewController:newPostView animated:YES completion:NULL];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

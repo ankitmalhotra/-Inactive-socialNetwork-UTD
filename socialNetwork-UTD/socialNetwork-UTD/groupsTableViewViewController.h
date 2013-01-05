@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface groupsTableViewViewController : UIViewController
+         <UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UITableView *tabVw;
-    NSDictionary *countries;
+    NSArray *groupList;
+    NSString *selectedIndex;
 }
 
 -(IBAction)backToMain;
+-(IBAction)createGroup;
 
 @end

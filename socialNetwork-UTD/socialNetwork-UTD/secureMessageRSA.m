@@ -99,6 +99,7 @@ uint8_t *plainBuffer;
     /*Allocate crypto buffer*/
     cipherBufferSize=SecKeyGetBlockSize(pubKey);
     cipherBuffer=malloc(cipherBufferSize);
+    
     /*Start Encrypting*/
     sanityCheck=
     SecKeyEncrypt(pubKey, kSecPaddingPKCS1, data, sizeof(data), cipherBuffer, &cipherBufferSize);

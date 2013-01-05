@@ -2,68 +2,11 @@
 #import "USAdditions.h"
 #import <libxml/tree.h>
 #import "USGlobals.h"
-@class GroupsDataServiceServiceSvc_Exception;
-@class GroupsDataServiceServiceSvc_SQLException;
-@class GroupsDataServiceServiceSvc_CreateUserGroup;
-@class GroupsDataServiceServiceSvc_CreateUserGroupResponse;
 @class GroupsDataServiceServiceSvc_GetGroupsData;
 @class GroupsDataServiceServiceSvc_GetGroupsDataResponse;
-#import "ax23.h"
-#import "ax25.h"
-@interface GroupsDataServiceServiceSvc_SQLException : NSObject {
-	
-/* elements */
-	ax23_SQLException * SQLException;
-/* attributes */
-}
-- (NSString *)nsPrefix;
-- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
-- (void)addAttributesToNode:(xmlNodePtr)node;
-- (void)addElementsToNode:(xmlNodePtr)node;
-+ (GroupsDataServiceServiceSvc_SQLException *)deserializeNode:(xmlNodePtr)cur;
-- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
-- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
-/* elements */
-@property (retain) ax23_SQLException * SQLException;
-/* attributes */
-- (NSDictionary *)attributes;
-@end
-@interface GroupsDataServiceServiceSvc_CreateUserGroup : NSObject {
-	
-/* elements */
-	ax25_UserDetails * userDetailsobject;
-/* attributes */
-}
-- (NSString *)nsPrefix;
-- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
-- (void)addAttributesToNode:(xmlNodePtr)node;
-- (void)addElementsToNode:(xmlNodePtr)node;
-+ (GroupsDataServiceServiceSvc_CreateUserGroup *)deserializeNode:(xmlNodePtr)cur;
-- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
-- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
-/* elements */
-@property (retain) ax25_UserDetails * userDetailsobject;
-/* attributes */
-- (NSDictionary *)attributes;
-@end
-@interface GroupsDataServiceServiceSvc_CreateUserGroupResponse : NSObject {
-	
-/* elements */
-	NSString * return_;
-/* attributes */
-}
-- (NSString *)nsPrefix;
-- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
-- (void)addAttributesToNode:(xmlNodePtr)node;
-- (void)addElementsToNode:(xmlNodePtr)node;
-+ (GroupsDataServiceServiceSvc_CreateUserGroupResponse *)deserializeNode:(xmlNodePtr)cur;
-- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
-- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
-/* elements */
-@property (retain) NSString * return_;
-/* attributes */
-- (NSDictionary *)attributes;
-@end
+@class GroupsDataServiceServiceSvc_CreateUserGroup;
+@class GroupsDataServiceServiceSvc_CreateUserGroupResponse;
+#import "ax22.h"
 @interface GroupsDataServiceServiceSvc_GetGroupsData : NSObject {
 	
 /* elements */
@@ -85,7 +28,7 @@
 @interface GroupsDataServiceServiceSvc_GetGroupsDataResponse : NSObject {
 	
 /* elements */
-	ax25_GroupDetails * return_;
+	NSString * return_;
 /* attributes */
 }
 - (NSString *)nsPrefix;
@@ -96,7 +39,43 @@
 - (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
 - (void)deserializeElementsFromNode:(xmlNodePtr)cur;
 /* elements */
-@property (retain) ax25_GroupDetails * return_;
+@property (retain) NSString * return_;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface GroupsDataServiceServiceSvc_CreateUserGroup : NSObject {
+	
+/* elements */
+	ax22_UserDetails * userDetailsobject;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (GroupsDataServiceServiceSvc_CreateUserGroup *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) ax22_UserDetails * userDetailsobject;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface GroupsDataServiceServiceSvc_CreateUserGroupResponse : NSObject {
+	
+/* elements */
+	NSString * return_;
+/* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (GroupsDataServiceServiceSvc_CreateUserGroupResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * return_;
 /* attributes */
 - (NSDictionary *)attributes;
 @end
@@ -104,8 +83,7 @@
 #import <libxml/parser.h>
 #import "xsd.h"
 #import "GroupsDataServiceServiceSvc.h"
-#import "ax25.h"
-#import "ax23.h"
+#import "ax22.h"
 @class GroupsDataServiceServiceSoap11Binding;
 @class GroupsDataServiceServiceSoap12Binding;
 @interface GroupsDataServiceServiceSvc : NSObject {
