@@ -7,22 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GroupsDataServiceServiceSvc.h"
 #import "groupsTableViewViewController.h"
 #import "friendsViewController.h"
 #import "newPostViewController.h"
-//#import "CurrencyConvertorSvc.h"
 
+/*static variable declaration*/
+
+/*Flag to ensure initial login view is displayed only once*/
 static int appearCheck=0;
+/*Mutable Array object to collate group names inbound from server*/
+static NSMutableArray *groups;
+
 
 @interface messengerViewController : UIViewController
 {
     IBOutlet UIBarButtonItem *friendsBtn;
     IBOutlet UIBarButtonItem *groupsBtn;
     IBOutlet UIBarButtonItem *postBtn;
-    //IBOutlet UINavigationController *tblView;
-    /*Group names*/
-    NSArray *groups;
+    IBOutlet UIBarButtonItem *stopUpdate;
     NSArray *friends;
 }
 
@@ -30,14 +32,13 @@ static int appearCheck=0;
 
 -(IBAction)backgroundTouched:(id)sender;
 -(void)getUserId:(NSString *)userId;
--(void)processRequest;
--(void)processResponse:(GroupsDataServiceServiceSoap11BindingResponse *)response;
 -(IBAction)showGroups;
 -(IBAction)showFriends;
--(NSArray *)getGroupObjects;
+-(NSMutableArray *)setGroupObjects:(NSMutableArray *)inputArray:(int)toReturn;
 -(NSArray *)getFriendObjects;
 -(void)setSelectedIndex:(NSString *)indexVal;
 -(IBAction)createPost;
+-(IBAction)stopUpdate;
 
 
 @end

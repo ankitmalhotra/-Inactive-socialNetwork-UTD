@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface groupsTableViewViewController : UIViewController
-         <UITableViewDataSource,UITableViewDelegate>
+         <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     IBOutlet UITableView *tabVw;
     NSArray *groupList;
     NSString *selectedIndex;
+    NSString *grpName;
+    UITextField *groupNameField;
 }
 
 -(IBAction)backToMain;

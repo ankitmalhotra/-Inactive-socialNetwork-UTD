@@ -10,7 +10,6 @@
 #import "messengerAppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import "secureMessageRSA.h"
-//#import "GroupsDataServiceServiceSvc.h"
 //#import <Security/Security.h>
 //#import <CommonCrypto/CommonCrypto.h>
 //#import <CommonCrypto/CommonDigest.h>
@@ -65,6 +64,7 @@
 - (void)viewDidLoad
 {
     NSLog(@"val is: %d",appearCheck);
+    groups=[[NSMutableArray alloc]init];
     /*Get Location*/
     [super viewDidLoad];
     
@@ -92,22 +92,12 @@
 }
 
 
-/*SOAP request call*/
+
+
+/*SOAP request call
 -(void)processRequest
 {
-    /*
-    CurrencyConvertorSoapBinding* binding = [CurrencyConvertorSvc CurrencyConvertorSoapBinding];
-    CurrencyConvertorSoapBindingResponse* response;
-    CurrencyConvertorSvc_ConversionRate* request = [[CurrencyConvertorSvc_ConversionRate alloc]init];
-    request.FromCurrency =  CurrencyConvertorSvc_Currency_enumFromString(@"USD");
-    request.ToCurrency = CurrencyConvertorSvc_Currency_enumFromString(@"INR");
-    response = [binding ConversionRateUsingParameters:request];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self processResponse:response];
-    });
-    */
-    
+
     GroupsDataServiceServiceSoap11Binding *bindingSOAP=[GroupsDataServiceServiceSvc GroupsDataServiceServiceSoap11Binding];
     GroupsDataServiceServiceSoap11BindingResponse *bindingResponse;
     GroupsDataServiceServiceSvc_GetGroupsData *request=[[GroupsDataServiceServiceSvc_GetGroupsData alloc]init];
@@ -117,40 +107,11 @@
     NSLog(@"at server: %@",request.UserId);
     dispatch_async(dispatch_get_main_queue(), ^{[self processResponse:bindingResponse];});
 }
- 
-/*SOAP response call*/
--(void)processResponse:(GroupsDataServiceServiceSoap11BindingResponse *)response
+*/
+
+/*SOAP response call
+-(void)processResponse:(testGreetPortBindingResponse *)response
 {
-    /*
-    NSArray *responseBodyParts = response.bodyParts;
-    id bodyPart;    
-    @try{
-        bodyPart = [responseBodyParts objectAtIndex:0]; // Assuming just 1 part in response which is fine
-        NSLog(@"type is: %@",bodyPart);
-    }
-    
-    @catch (NSException* exception)
-    {
-        NSLog(@"err type is: %@",exception);
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:@"Error while trying to process request" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-    
-    if ([bodyPart isKindOfClass:[SOAPFault class]]) {
-        
-        NSString* errorMesg = ((SOAPFault *)bodyPart).simpleFaultString;
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Server Error" message:errorMesg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }
-    else if([bodyPart isKindOfClass:[CurrencyConvertorSvc_ConversionRateResponse class]]) {
-        CurrencyConvertorSvc_ConversionRateResponse* rateResponse = bodyPart;
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:[NSString stringWithFormat:@"Currency Conversion Rate is %@",rateResponse.ConversionRateResult] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-        
-    }
-    */
-    
     NSArray *responseBodyParts = response.bodyParts;
     NSLog(@"bodyparts: %@",responseBodyParts);
     id bodyPart;
@@ -178,14 +139,28 @@
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Success!" message:[NSString stringWithFormat:@"Response data is %@",groupResponse.return_] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];        
     }
-
 }
+*/
+
+
+
 
 /*Define group values to be shown in group tableview*/
--(NSArray *)getGroupObjects
+-(NSMutableArray *)setGroupObjects:(NSMutableArray *)arrayInput:(int)toReturn
 {
-    groups=[[NSArray alloc]initWithObjects:@"Physics",@"Chemistry",@"Mathematics", nil];
-    return groups;
+    /*If toReturn is 1: collate the data inbound into "groups object*/
+    if(toReturn==1)
+    {
+        [groups addObjectsFromArray:arrayInput];
+        NSLog(@"group data received: %@",groups);
+        return NULL;
+    }
+    /*If toReturn is 0: return the collated data to show in table*/
+    else
+    {
+        NSLog(@"group data received: %@",groups);
+        return groups;
+    }
 }
 
 /*Define friend values to be shown in friend tableview*/
@@ -247,8 +222,6 @@
     return NO;
 }
 
-
-
 /*show groups listing*/
 -(IBAction)showGroups
 {
@@ -271,6 +244,11 @@
     [self presentViewController:newPostView animated:YES completion:NULL];
 }
 
+-(IBAction)stopUpdate
+{
+    [locManager stopUpdatingLocation];
+    NSLog(@"Location updater stoppped.");
+}
 
 
 - (void)didReceiveMemoryWarning

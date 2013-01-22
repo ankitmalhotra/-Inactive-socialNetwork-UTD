@@ -20,7 +20,8 @@
 {
     [super viewDidLoad];
     messengerViewController *grabGroupsObj=[[messengerViewController alloc] init];
-    groupList=[grabGroupsObj getGroupObjects];
+    /*Call to retrieve the collated data from server*/
+    groupList=[grabGroupsObj setGroupObjects:nil :0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,8 +80,39 @@
 
 -(IBAction)createGroup
 {
-    UIAlertView *createAlert=[[UIAlertView alloc]initWithTitle:@"New Group" message:[NSString stringWithFormat:@"Enter the group name"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *createAlert=[[UIAlertView alloc]initWithTitle:@"New Group" message:[NSString stringWithFormat:@"Enter the group name"] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    /*
+    double xCoord=(createAlert.frame.origin.x);
+    double yCoord=(createAlert.frame.origin.y);
+    double width=(createAlert.frame.size.width);
+    double height=(createAlert.frame.size.height);
+    */
+    
+    /*Add the text-field for group name*/
+    groupNameField=[[UITextField alloc]initWithFrame:CGRectMake(32.0,45.0,220.0,25.0)];
+    groupNameField.placeholder=@"Group Name";
+    [groupNameField setBackgroundColor:[UIColor whiteColor]];
+    [createAlert addSubview:groupNameField];
+    
+    CGAffineTransform createAlertTrans=CGAffineTransformMakeTranslation(0.0, -80.0);
+    [createAlert setTransform:createAlertTrans];
     [createAlert show];
+    
+    [createAlert release];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1)
+    {
+        /*Capture entered group name*/
+        grpName=groupNameField.text;
+        NSLog(@"group name is: %@",grpName);
+        UIAlertView *createdAlert=[[UIAlertView alloc]initWithTitle:@"Success" message:[NSString stringWithFormat:@"New Group Successfully created"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [createdAlert show];
+        [createdAlert release];
+    }
 }
 
 

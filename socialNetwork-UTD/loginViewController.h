@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "messengerViewController.h"
 #import "secureMessageRSA.h"
+#import "messengerRESTclient.h"
 
 static int appearFlagCheck=0;
 
@@ -18,6 +19,7 @@ static int appearFlagCheck=0;
     IBOutlet UITextField *nameField;
     IBOutlet UITextField *passwordField;
     IBOutlet UIActivityIndicatorView *spinningView;
+    messengerRESTclient *restObj;
 }
 -(IBAction)swichBackMain;
 -(IBAction)returnKeyBoard:(id)sender;

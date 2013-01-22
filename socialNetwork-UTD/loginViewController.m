@@ -38,10 +38,13 @@
     messengerViewController *obj=[[messengerViewController alloc]init];
     [obj getUserId:username];
     
-    /*Start SOAP request processing*/
+    /*Start REST request*/
     spinningView.hidden=FALSE;
     [spinningView startAnimating];
-    [obj processRequest];
+    //[obj processRequest];
+    restObj=[[messengerRESTclient alloc]init];
+    /*Pass this username to server*/
+    [restObj sendMessage:username];
     
     /*Generate Key Pairs routine*/
     [secureMessageRSA generateKeyPairs];

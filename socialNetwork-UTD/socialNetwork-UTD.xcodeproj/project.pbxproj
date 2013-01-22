@@ -28,14 +28,10 @@
 		FE502324167FC8F100A560EE /* friendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE502322167FC8F000A560EE /* friendsViewController.xib */; };
 		FE57BD071693F15000B97DCF /* newPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE57BD051693F15000B97DCF /* newPostViewController.m */; };
 		FE57BD081693F15000B97DCF /* newPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE57BD061693F15000B97DCF /* newPostViewController.xib */; };
+		FE90F9A216ACA84B0089B34F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE90F9A116ACA84B0089B34F /* Settings.bundle */; };
+		FE90F9A516ACB1EC0089B34F /* BaseRESTclient.m in Sources */ = {isa = PBXBuildFile; fileRef = FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */; };
+		FE90F9A816ACC6520089B34F /* messengerRESTclient.m in Sources */ = {isa = PBXBuildFile; fileRef = FE90F9A716ACC6520089B34F /* messengerRESTclient.m */; };
 		FEABE8A916464064000F27FD /* secureMessageRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = FEABE8A816464064000F27FD /* secureMessageRSA.m */; };
-		FEC4618C16905C3C00E754E3 /* ax22.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4617F16905C3C00E754E3 /* ax22.m */; };
-		FEC4618D16905C3C00E754E3 /* GroupsDataServiceServiceSvc.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618116905C3C00E754E3 /* GroupsDataServiceServiceSvc.m */; };
-		FEC4618E16905C3C00E754E3 /* NSDate+ISO8601Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618316905C3C00E754E3 /* NSDate+ISO8601Parsing.m */; };
-		FEC4618F16905C3C00E754E3 /* NSDate+ISO8601Unparsing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618516905C3C00E754E3 /* NSDate+ISO8601Unparsing.m */; };
-		FEC4619016905C3C00E754E3 /* USAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618716905C3C00E754E3 /* USAdditions.m */; };
-		FEC4619116905C3C00E754E3 /* USGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618916905C3C00E754E3 /* USGlobals.m */; };
-		FEC4619216905C3C00E754E3 /* xsd.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC4618B16905C3C00E754E3 /* xsd.m */; };
 		FECCDC5F165727DC0084447E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FECCDC5E165727DC0084447E /* CFNetwork.framework */; };
 		FEEC2C0916314087000B2329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEEC2C0816314087000B2329 /* MapKit.framework */; };
 		FEFDD41E162E37B600B88CFA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDD41D162E37B600B88CFA /* Security.framework */; };
@@ -72,22 +68,13 @@
 		FE57BD041693F15000B97DCF /* newPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newPostViewController.h; sourceTree = "<group>"; };
 		FE57BD051693F15000B97DCF /* newPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newPostViewController.m; sourceTree = "<group>"; };
 		FE57BD061693F15000B97DCF /* newPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newPostViewController.xib; sourceTree = "<group>"; };
+		FE90F9A116ACA84B0089B34F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		FE90F9A316ACB1EC0089B34F /* BaseRESTclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRESTclient.h; sourceTree = "<group>"; };
+		FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRESTclient.m; sourceTree = "<group>"; };
+		FE90F9A616ACC6520089B34F /* messengerRESTclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = messengerRESTclient.h; sourceTree = "<group>"; };
+		FE90F9A716ACC6520089B34F /* messengerRESTclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = messengerRESTclient.m; sourceTree = "<group>"; };
 		FEABE8A716464064000F27FD /* secureMessageRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secureMessageRSA.h; sourceTree = "<group>"; };
 		FEABE8A816464064000F27FD /* secureMessageRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secureMessageRSA.m; sourceTree = "<group>"; };
-		FEC4617E16905C3C00E754E3 /* ax22.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ax22.h; sourceTree = "<group>"; };
-		FEC4617F16905C3C00E754E3 /* ax22.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ax22.m; sourceTree = "<group>"; };
-		FEC4618016905C3C00E754E3 /* GroupsDataServiceServiceSvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsDataServiceServiceSvc.h; sourceTree = "<group>"; };
-		FEC4618116905C3C00E754E3 /* GroupsDataServiceServiceSvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsDataServiceServiceSvc.m; sourceTree = "<group>"; };
-		FEC4618216905C3C00E754E3 /* NSDate+ISO8601Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Parsing.h"; sourceTree = "<group>"; };
-		FEC4618316905C3C00E754E3 /* NSDate+ISO8601Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Parsing.m"; sourceTree = "<group>"; };
-		FEC4618416905C3C00E754E3 /* NSDate+ISO8601Unparsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ISO8601Unparsing.h"; sourceTree = "<group>"; };
-		FEC4618516905C3C00E754E3 /* NSDate+ISO8601Unparsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ISO8601Unparsing.m"; sourceTree = "<group>"; };
-		FEC4618616905C3C00E754E3 /* USAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USAdditions.h; sourceTree = "<group>"; };
-		FEC4618716905C3C00E754E3 /* USAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USAdditions.m; sourceTree = "<group>"; };
-		FEC4618816905C3C00E754E3 /* USGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USGlobals.h; sourceTree = "<group>"; };
-		FEC4618916905C3C00E754E3 /* USGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USGlobals.m; sourceTree = "<group>"; };
-		FEC4618A16905C3C00E754E3 /* xsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd.h; sourceTree = "<group>"; };
-		FEC4618B16905C3C00E754E3 /* xsd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xsd.m; sourceTree = "<group>"; };
 		FECCDC5E165727DC0084447E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FEEC2C0816314087000B2329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FEFDD41D162E37B600B88CFA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -164,7 +151,12 @@
 				FE57BD041693F15000B97DCF /* newPostViewController.h */,
 				FE57BD051693F15000B97DCF /* newPostViewController.m */,
 				FE57BD061693F15000B97DCF /* newPostViewController.xib */,
+				FE90F9A316ACB1EC0089B34F /* BaseRESTclient.h */,
+				FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */,
+				FE90F9A616ACC6520089B34F /* messengerRESTclient.h */,
+				FE90F9A716ACC6520089B34F /* messengerRESTclient.m */,
 				FE0AFCE316255A10000A92C9 /* Supporting Files */,
+				FE90F9A116ACA84B0089B34F /* Settings.bundle */,
 			);
 			path = "socialNetwork-UTD";
 			sourceTree = "<group>";
@@ -196,20 +188,6 @@
 		FE8BEF2B1664476D007FCA3B /* wsdl2ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				FEC4617E16905C3C00E754E3 /* ax22.h */,
-				FEC4617F16905C3C00E754E3 /* ax22.m */,
-				FEC4618016905C3C00E754E3 /* GroupsDataServiceServiceSvc.h */,
-				FEC4618116905C3C00E754E3 /* GroupsDataServiceServiceSvc.m */,
-				FEC4618216905C3C00E754E3 /* NSDate+ISO8601Parsing.h */,
-				FEC4618316905C3C00E754E3 /* NSDate+ISO8601Parsing.m */,
-				FEC4618416905C3C00E754E3 /* NSDate+ISO8601Unparsing.h */,
-				FEC4618516905C3C00E754E3 /* NSDate+ISO8601Unparsing.m */,
-				FEC4618616905C3C00E754E3 /* USAdditions.h */,
-				FEC4618716905C3C00E754E3 /* USAdditions.m */,
-				FEC4618816905C3C00E754E3 /* USGlobals.h */,
-				FEC4618916905C3C00E754E3 /* USGlobals.m */,
-				FEC4618A16905C3C00E754E3 /* xsd.h */,
-				FEC4618B16905C3C00E754E3 /* xsd.m */,
 			);
 			name = wsdl2ObjC;
 			sourceTree = "<group>";
@@ -276,6 +254,7 @@
 				FE1FCFAB166E80A0009E61C7 /* countries.plist in Resources */,
 				FE502324167FC8F100A560EE /* friendsViewController.xib in Resources */,
 				FE57BD081693F15000B97DCF /* newPostViewController.xib in Resources */,
+				FE90F9A216ACA84B0089B34F /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +272,9 @@
 				FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */,
 				FE1FCFA6166E7D7D009E61C7 /* groupsTableViewViewController.m in Sources */,
 				FE502323167FC8F100A560EE /* friendsViewController.m in Sources */,
-				FEC4618C16905C3C00E754E3 /* ax22.m in Sources */,
-				FEC4618D16905C3C00E754E3 /* GroupsDataServiceServiceSvc.m in Sources */,
-				FEC4618E16905C3C00E754E3 /* NSDate+ISO8601Parsing.m in Sources */,
-				FEC4618F16905C3C00E754E3 /* NSDate+ISO8601Unparsing.m in Sources */,
-				FEC4619016905C3C00E754E3 /* USAdditions.m in Sources */,
-				FEC4619116905C3C00E754E3 /* USGlobals.m in Sources */,
-				FEC4619216905C3C00E754E3 /* xsd.m in Sources */,
 				FE57BD071693F15000B97DCF /* newPostViewController.m in Sources */,
+				FE90F9A516ACB1EC0089B34F /* BaseRESTclient.m in Sources */,
+				FE90F9A816ACC6520089B34F /* messengerRESTclient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
