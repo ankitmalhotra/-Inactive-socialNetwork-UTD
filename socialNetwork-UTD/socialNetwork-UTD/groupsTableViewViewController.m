@@ -7,7 +7,6 @@
 //
 
 #import "groupsTableViewViewController.h"
-#import "messengerViewController.h"
 
 @interface groupsTableViewViewController ()
 
@@ -19,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //restObj=[[messengerRESTclient alloc]init];
+    //[restObj receiveMessage:@"list"];
     messengerViewController *grabGroupsObj=[[messengerViewController alloc] init];
     /*Call to retrieve the collated data from server*/
     groupList=[grabGroupsObj setGroupObjects:nil :0];

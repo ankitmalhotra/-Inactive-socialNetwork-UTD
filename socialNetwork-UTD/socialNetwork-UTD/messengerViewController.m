@@ -64,10 +64,14 @@
 - (void)viewDidLoad
 {
     NSLog(@"val is: %d",appearCheck);
-    groups=[[NSMutableArray alloc]init];
-    /*Get Location*/
-    [super viewDidLoad];
     
+    /*Object instantiations*/
+    groups=[[NSMutableArray alloc]init];
+    friends=[[NSMutableArray alloc]init];
+    
+    [super viewDidLoad];
+
+    /*Get Location*/
     locManager=[[CLLocationManager alloc] init];
     locManager.delegate=self;
     locManager.desiredAccuracy=kCLLocationAccuracyBest;
@@ -164,10 +168,21 @@
 }
 
 /*Define friend values to be shown in friend tableview*/
--(NSArray *)getFriendObjects
+-(NSArray *)getFriendObjects:(NSMutableArray *)arrayInput:(int)toReturn
 {
-    friends=[[NSArray alloc]initWithObjects:@"Ankit",@"Pranav", nil];
-    return friends;
+    /*If toReturn is 1: collate the data inbound into "friends object*/
+    if(toReturn==1)
+    {
+        [friends addObjectsFromArray:arrayInput];
+        NSLog(@"friend data received: %@",friends);
+        return NULL;
+    }
+    /*If toReturn is 0: return the collated data to show in table*/
+    else
+    {
+        NSLog(@"friend data received: %@",friends);
+        return friends;
+    }
 }
 
 /*Receive the index selected in any tableview*/

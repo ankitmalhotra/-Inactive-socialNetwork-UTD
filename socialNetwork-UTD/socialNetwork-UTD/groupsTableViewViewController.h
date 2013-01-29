@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "messengerViewController.h"
+//#import "messengerRESTclient.h"
 
 @interface groupsTableViewViewController : UIViewController
          <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
@@ -16,6 +18,7 @@
     NSString *selectedIndex;
     NSString *grpName;
     UITextField *groupNameField;
+    //messengerRESTclient *restObj;
 }
 
 -(IBAction)backToMain;

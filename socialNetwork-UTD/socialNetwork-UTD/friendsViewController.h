@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "messengerViewController.h"
 
 @interface friendsViewController : UIViewController
         <UITableViewDataSource,UITableViewDelegate>

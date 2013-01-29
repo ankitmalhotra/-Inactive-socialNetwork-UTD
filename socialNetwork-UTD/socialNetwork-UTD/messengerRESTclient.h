@@ -14,6 +14,7 @@
     NSMutableData *wipData;
 }
 
--(void)sendMessage: (NSString *)message;
+-(void)receiveMessage:(NSString *)message;
+-(int)sendMessage:(NSString *)data;
 
 @end

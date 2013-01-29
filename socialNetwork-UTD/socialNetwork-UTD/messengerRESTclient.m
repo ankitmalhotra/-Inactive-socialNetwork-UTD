@@ -10,9 +10,9 @@
 
 @implementation messengerRESTclient
 
--(void)sendMessage:(NSString *)message
+-(void)receiveMessage:(NSString *)message
 {
-    NSLog(@"in..");
+    NSLog(@"receiveMessage in..");
     NSString *settingsBundle=[[NSBundle mainBundle]pathForResource:@"Settings" ofType:@"bundle"];
     if(!settingsBundle)
     {
@@ -59,7 +59,107 @@
     /*start the async request*/
 	[NSURLConnection connectionWithRequest:request delegate:self];
 }
-/*Received at the start of the response from the server.  This may get called multiple times in certain redirect scenerios.*/
+
+-(int)sendMessage:(NSString *)data
+{
+    NSLog(@"sendMessage in..");
+    
+    int retVal;
+    int dataHash = (int)data;
+    dataHash=dataHash%17;
+    NSLog(@"userid: %d",dataHash);
+
+    NSString *settingsBundle=[[NSBundle mainBundle]pathForResource:@"Settings" ofType:@"bundle"];
+    if(!settingsBundle)
+    {
+        NSLog(@"settings found");
+    }
+    else
+    {
+        NSLog(@"settings missing..");
+    }
+    
+    NSDictionary *settings=[NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSArray *prefrences=[settings objectForKey:@"PreferenceSpecifiers"];
+    
+    NSMutableDictionary *defaultsToRegister=[[NSMutableDictionary alloc]initWithCapacity:[prefrences count]];
+    
+    for(NSDictionary *prefSpecs in prefrences)
+    {
+        NSString *key=[prefSpecs objectForKey:@"Key"];
+        if(key)
+        {
+            [defaultsToRegister setObject:[prefSpecs objectForKey:@"DefaultValue"] forKey:key];
+        }
+        else
+        {
+            NSLog(@"key not found..");
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults]registerDefaults:defaultsToRegister];
+    [defaultsToRegister release];
+    
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    NSString *urlString=[defaults stringForKey:@"server_url"];
+    
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/v2/add",urlString]];
+    NSLog(@"Sending Request to URL %@", url);
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0];
+    [request setHTTPMethod:@"POST"];
+    NSString *contentType=[NSString stringWithFormat:@"application/XML"];
+    [request addValue:contentType forHTTPHeaderField:@"Content-type"];
+    
+    NSMutableData *postData=[NSMutableData data];
+    [postData appendData:[[NSString stringWithFormat:@"<user xmlns=\"http://captechventures.com/schema\">"]dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[[NSString stringWithFormat:@"<UserId>%d</UserId>",dataHash]dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[[NSString stringWithFormat:@"<UserName>%@</UserName>",data]dataUsingEncoding:NSUTF8StringEncoding]];
+    [postData appendData:[[NSString stringWithFormat:@"</user>"]dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:postData];
+    
+    /*Handle the synchronous response here*/
+    NSError			*requestError;
+	NSURLResponse	*urlResponse;
+	NSError			*error = nil;
+	NSData *responseData = [NSURLConnection sendSynchronousRequest:request
+												 returningResponse:&urlResponse
+															 error:&requestError];
+	if (error == nil)
+    {
+		if ([urlResponse isKindOfClass:[NSHTTPURLResponse class]])
+        {
+			NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
+			int status = [httpResponse statusCode];
+			/*If the call was okay, then invoke the parser*/
+			if ((status >= 200) && (status < 300))
+            {
+				[accessPtr parseDocument:responseData];
+                
+                /*If call is successful, get the list from server*/
+                [self receiveMessage:@"list"];
+                retVal=1;
+			}
+            else
+            {
+                NSLog(@"status error: %d",status);
+            }
+		}
+        else
+        {
+            NSLog(@"Unable to complete the request !");
+            retVal=0;
+        }
+	}
+    
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    return retVal;
+}
+
+/*Received at the start of the asynchronous response from the server.  This may get called multiple times in certain redirect scenerios.*/
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {	
 	NSLog(@"Received Response");
@@ -97,14 +197,16 @@
 }
 
 /*Called once at the end of the request*/
-- (void)connectionDidFinishLoading:(NSURLConnection *)conn {
-	// do a little debug dump
+- (void)connectionDidFinishLoading:(NSURLConnection *)conn
+{
+	/*Do a little debug dump*/
     accessPtr = [[BaseRESTclient alloc]init];
 	NSString *xml = [[NSString alloc] initWithData:wipData encoding:NSUTF8StringEncoding];
 	NSLog(@"xml = %@", xml);
 	[xml release];
 	
     NSLog(@"wip data is: %@",wipData);
+    /*Parse inbound XML response to BaseRESTclient*/
 	[accessPtr parseDocument:wipData];
     
 	/*turn off the network indicator*/
@@ -115,13 +217,13 @@
 /*On the start of every element, clearn the intraelement text*/
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	[accessPtr clearContentsOfElement];
+	//[accessPtr clearContentsOfElement];
 }
 
 /*Called for each element*/
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    [accessPtr clearContentsOfElement];
+    //[accessPtr clearContentsOfElement];
 }
 
 @end

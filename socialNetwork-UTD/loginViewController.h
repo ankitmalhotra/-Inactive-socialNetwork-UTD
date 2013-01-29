@@ -20,6 +20,7 @@ static int appearFlagCheck=0;
     IBOutlet UITextField *passwordField;
     IBOutlet UIActivityIndicatorView *spinningView;
     messengerRESTclient *restObj;
+    int retVal;
 }
 -(IBAction)swichBackMain;
 -(IBAction)returnKeyBoard:(id)sender;

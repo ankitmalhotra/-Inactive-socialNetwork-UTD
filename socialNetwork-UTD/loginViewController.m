@@ -44,15 +44,26 @@
     //[obj processRequest];
     restObj=[[messengerRESTclient alloc]init];
     /*Pass this username to server*/
-    [restObj sendMessage:username];
-    
-    /*Generate Key Pairs routine*/
-    [secureMessageRSA generateKeyPairs];
-    
-    /*Push back main view*/
-    messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
-    [self presentViewController:mainVw animated:YES completion:NULL];
-    [spinningView stopAnimating];
+    retVal=[restObj sendMessage:username];
+    if (retVal==1)
+    {
+        /*Generate Key Pairs routine*/
+        [secureMessageRSA generateKeyPairs];
+        
+        /*Push back main view*/
+        messengerViewController *mainVw=[[messengerViewController alloc]initWithNibName:nil bundle:nil];
+        [self presentViewController:mainVw animated:YES completion:NULL];
+        [spinningView stopAnimating];
+    }
+    else
+    {
+        UIAlertView *connNullAlert=[[UIAlertView alloc]initWithTitle:@"Connection Error" message:@"Unable to contact server" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [connNullAlert show];
+        [connNullAlert release];
+        [spinningView stopAnimating];
+        spinningView.hidden=TRUE;
+        switchBackBtn.enabled=TRUE;
+    }
 }
 
 /*Resign the keyboard on pressing return*/

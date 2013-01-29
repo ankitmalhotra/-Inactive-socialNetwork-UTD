@@ -17,7 +17,8 @@
 static int appearCheck=0;
 /*Mutable Array object to collate group names inbound from server*/
 static NSMutableArray *groups;
-
+/*Mutable Array object to collate friend names inbound from server*/
+static NSMutableArray *friends;
 
 @interface messengerViewController : UIViewController
 {
@@ -25,7 +26,6 @@ static NSMutableArray *groups;
     IBOutlet UIBarButtonItem *groupsBtn;
     IBOutlet UIBarButtonItem *postBtn;
     IBOutlet UIBarButtonItem *stopUpdate;
-    NSArray *friends;
 }
 
 @property (readwrite,assign) NSString *gpNames;
@@ -35,7 +35,7 @@ static NSMutableArray *groups;
 -(IBAction)showGroups;
 -(IBAction)showFriends;
 -(NSMutableArray *)setGroupObjects:(NSMutableArray *)inputArray:(int)toReturn;
--(NSArray *)getFriendObjects;
+-(NSMutableArray *)getFriendObjects: (NSMutableArray *)inputArray:(int)toReturn;
 -(void)setSelectedIndex:(NSString *)indexVal;
 -(IBAction)createPost;
 -(IBAction)stopUpdate;

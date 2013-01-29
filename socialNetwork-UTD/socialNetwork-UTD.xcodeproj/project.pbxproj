@@ -21,7 +21,6 @@
 		FE0AFD0016255C33000A92C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AFCFF16255C33000A92C9 /* CoreLocation.framework */; };
 		FE1FCFA6166E7D7D009E61C7 /* groupsTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */; };
 		FE1FCFA7166E7D7D009E61C7 /* groupsTableViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */; };
-		FE1FCFAB166E80A0009E61C7 /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE1FCFAA166E80A0009E61C7 /* countries.plist */; };
 		FE4718421652C4B1004B4ED0 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4718401652C4B1004B4ED0 /* loginViewController.m */; };
 		FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE4718411652C4B1004B4ED0 /* loginViewController.xib */; };
 		FE502323167FC8F100A560EE /* friendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE502321167FC8F000A560EE /* friendsViewController.m */; };
@@ -58,7 +57,6 @@
 		FE1FCFA3166E7D7C009E61C7 /* groupsTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = groupsTableViewViewController.h; sourceTree = "<group>"; };
 		FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = groupsTableViewViewController.m; sourceTree = "<group>"; };
 		FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = groupsTableViewViewController.xib; sourceTree = "<group>"; };
-		FE1FCFAA166E80A0009E61C7 /* countries.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = countries.plist; sourceTree = "<group>"; };
 		FE47183F1652C4B1004B4ED0 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = loginViewController.h; path = ../loginViewController.h; sourceTree = "<group>"; };
 		FE4718401652C4B1004B4ED0 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = loginViewController.m; path = ../loginViewController.m; sourceTree = "<group>"; };
 		FE4718411652C4B1004B4ED0 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = loginViewController.xib; path = ../loginViewController.xib; sourceTree = "<group>"; };
@@ -132,29 +130,21 @@
 		FE0AFCE216255A10000A92C9 /* socialNetwork-UTD */ = {
 			isa = PBXGroup;
 			children = (
-				FE8BEF2B1664476D007FCA3B /* wsdl2ObjC */,
+				FE89AE6E16B84BB8001FA8C8 /* RESTclasses */,
+				FE89AE6D16B84B74001FA8C8 /* InterfaceBuilders */,
 				FE8BEF2A165B3D68007FCA3B /* cryptoFiles */,
 				FE0AFCEB16255A10000A92C9 /* messengerAppDelegate.h */,
 				FE0AFCEC16255A10000A92C9 /* messengerAppDelegate.m */,
 				FE0AFCF416255A10000A92C9 /* messengerViewController.h */,
 				FE0AFCF516255A10000A92C9 /* messengerViewController.m */,
-				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
 				FE47183F1652C4B1004B4ED0 /* loginViewController.h */,
 				FE4718401652C4B1004B4ED0 /* loginViewController.m */,
-				FE4718411652C4B1004B4ED0 /* loginViewController.xib */,
 				FE1FCFA3166E7D7C009E61C7 /* groupsTableViewViewController.h */,
 				FE1FCFA4166E7D7C009E61C7 /* groupsTableViewViewController.m */,
-				FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */,
 				FE502320167FC8F000A560EE /* friendsViewController.h */,
 				FE502321167FC8F000A560EE /* friendsViewController.m */,
-				FE502322167FC8F000A560EE /* friendsViewController.xib */,
 				FE57BD041693F15000B97DCF /* newPostViewController.h */,
 				FE57BD051693F15000B97DCF /* newPostViewController.m */,
-				FE57BD061693F15000B97DCF /* newPostViewController.xib */,
-				FE90F9A316ACB1EC0089B34F /* BaseRESTclient.h */,
-				FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */,
-				FE90F9A616ACC6520089B34F /* messengerRESTclient.h */,
-				FE90F9A716ACC6520089B34F /* messengerRESTclient.m */,
 				FE0AFCE316255A10000A92C9 /* Supporting Files */,
 				FE90F9A116ACA84B0089B34F /* Settings.bundle */,
 			);
@@ -165,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				FE0AFCE416255A10000A92C9 /* socialNetwork-UTD-Info.plist */,
-				FE1FCFAA166E80A0009E61C7 /* countries.plist */,
 				FE0AFCE516255A10000A92C9 /* InfoPlist.strings */,
 				FE0AFCE816255A10000A92C9 /* main.m */,
 				FE0AFCEA16255A10000A92C9 /* socialNetwork-UTD-Prefix.pch */,
@@ -176,6 +165,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FE89AE6D16B84B74001FA8C8 /* InterfaceBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
+				FE4718411652C4B1004B4ED0 /* loginViewController.xib */,
+				FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */,
+				FE502322167FC8F000A560EE /* friendsViewController.xib */,
+				FE57BD061693F15000B97DCF /* newPostViewController.xib */,
+			);
+			name = InterfaceBuilders;
+			sourceTree = "<group>";
+		};
+		FE89AE6E16B84BB8001FA8C8 /* RESTclasses */ = {
+			isa = PBXGroup;
+			children = (
+				FE90F9A316ACB1EC0089B34F /* BaseRESTclient.h */,
+				FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */,
+				FE90F9A616ACC6520089B34F /* messengerRESTclient.h */,
+				FE90F9A716ACC6520089B34F /* messengerRESTclient.m */,
+			);
+			name = RESTclasses;
+			sourceTree = "<group>";
+		};
 		FE8BEF2A165B3D68007FCA3B /* cryptoFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,13 +195,6 @@
 				FEABE8A816464064000F27FD /* secureMessageRSA.m */,
 			);
 			name = cryptoFiles;
-			sourceTree = "<group>";
-		};
-		FE8BEF2B1664476D007FCA3B /* wsdl2ObjC */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = wsdl2ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +256,6 @@
 				FE0AFCF916255A10000A92C9 /* messengerViewController.xib in Resources */,
 				FE4718431652C4B1004B4ED0 /* loginViewController.xib in Resources */,
 				FE1FCFA7166E7D7D009E61C7 /* groupsTableViewViewController.xib in Resources */,
-				FE1FCFAB166E80A0009E61C7 /* countries.plist in Resources */,
 				FE502324167FC8F100A560EE /* friendsViewController.xib in Resources */,
 				FE57BD081693F15000B97DCF /* newPostViewController.xib in Resources */,
 				FE90F9A216ACA84B0089B34F /* Settings.bundle in Resources */,

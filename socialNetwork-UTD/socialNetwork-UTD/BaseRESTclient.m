@@ -49,10 +49,12 @@
         [self callMain:_contentsOfElement];
     }
 
+   /*Manage call to main view and send the parsed data*/
     -(void)callMain:(NSMutableArray *)mainContents
-  {
-      [mainViewPtr setGroupObjects:mainContents:1];
-  }
+    {
+      //[mainViewPtr setGroupObjects:mainContents:1];
+        [mainViewPtr getFriendObjects:mainContents :1];
+    }
     /*Trim leading and trailing spaces*/
     - (NSString *)trim:(NSString *)inStr
     {
