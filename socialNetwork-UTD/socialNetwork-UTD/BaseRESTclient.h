@@ -19,5 +19,7 @@
 - (void) parseDocument:(NSData *) data ;
 - (void) clearContentsOfElement ;
 - (void)callMain:(NSArray *)mainContents;
+- (NSArray *)dataExposer;
+- (int)statusSignal;
 
 @end

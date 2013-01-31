@@ -16,13 +16,16 @@ static int appearFlagCheck=0;
 @interface loginViewController : UIViewController
 {
     IBOutlet UIButton *switchBackBtn;
+    IBOutlet UIButton *signupBtn;
     IBOutlet UITextField *nameField;
     IBOutlet UITextField *passwordField;
     IBOutlet UIActivityIndicatorView *spinningView;
-    messengerRESTclient *restObj;
     int retVal;
+    
+    messengerRESTclient *restObj;    
 }
 -(IBAction)swichBackMain;
+-(IBAction)signupUser;
 -(IBAction)returnKeyBoard:(id)sender;
 -(IBAction)backgroundTouched:(id)sender;
 

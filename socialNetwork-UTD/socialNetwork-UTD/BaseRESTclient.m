@@ -55,6 +55,17 @@
       //[mainViewPtr setGroupObjects:mainContents:1];
         [mainViewPtr getFriendObjects:mainContents :1];
     }
+
+    -(NSArray *)dataExposer
+    {
+        return _contentsOfElement;
+    }
+
+    -(int)statusSignal
+    {
+        return 1;
+    }
+
     /*Trim leading and trailing spaces*/
     - (NSString *)trim:(NSString *)inStr
     {

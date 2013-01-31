@@ -27,6 +27,8 @@
 		FE502324167FC8F100A560EE /* friendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE502322167FC8F000A560EE /* friendsViewController.xib */; };
 		FE57BD071693F15000B97DCF /* newPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE57BD051693F15000B97DCF /* newPostViewController.m */; };
 		FE57BD081693F15000B97DCF /* newPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE57BD061693F15000B97DCF /* newPostViewController.xib */; };
+		FE89AE7416B90340001FA8C8 /* signupUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE89AE7216B90340001FA8C8 /* signupUserViewController.m */; };
+		FE89AE7516B90340001FA8C8 /* signupUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE89AE7316B90340001FA8C8 /* signupUserViewController.xib */; };
 		FE90F9A216ACA84B0089B34F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE90F9A116ACA84B0089B34F /* Settings.bundle */; };
 		FE90F9A516ACB1EC0089B34F /* BaseRESTclient.m in Sources */ = {isa = PBXBuildFile; fileRef = FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */; };
 		FE90F9A816ACC6520089B34F /* messengerRESTclient.m in Sources */ = {isa = PBXBuildFile; fileRef = FE90F9A716ACC6520089B34F /* messengerRESTclient.m */; };
@@ -66,6 +68,9 @@
 		FE57BD041693F15000B97DCF /* newPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newPostViewController.h; sourceTree = "<group>"; };
 		FE57BD051693F15000B97DCF /* newPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newPostViewController.m; sourceTree = "<group>"; };
 		FE57BD061693F15000B97DCF /* newPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newPostViewController.xib; sourceTree = "<group>"; };
+		FE89AE7116B9033F001FA8C8 /* signupUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signupUserViewController.h; sourceTree = "<group>"; };
+		FE89AE7216B90340001FA8C8 /* signupUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signupUserViewController.m; sourceTree = "<group>"; };
+		FE89AE7316B90340001FA8C8 /* signupUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = signupUserViewController.xib; sourceTree = "<group>"; };
 		FE90F9A116ACA84B0089B34F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FE90F9A316ACB1EC0089B34F /* BaseRESTclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRESTclient.h; sourceTree = "<group>"; };
 		FE90F9A416ACB1EC0089B34F /* BaseRESTclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRESTclient.m; sourceTree = "<group>"; };
@@ -145,6 +150,8 @@
 				FE502321167FC8F000A560EE /* friendsViewController.m */,
 				FE57BD041693F15000B97DCF /* newPostViewController.h */,
 				FE57BD051693F15000B97DCF /* newPostViewController.m */,
+				FE89AE7116B9033F001FA8C8 /* signupUserViewController.h */,
+				FE89AE7216B90340001FA8C8 /* signupUserViewController.m */,
 				FE0AFCE316255A10000A92C9 /* Supporting Files */,
 				FE90F9A116ACA84B0089B34F /* Settings.bundle */,
 			);
@@ -168,6 +175,7 @@
 		FE89AE6D16B84B74001FA8C8 /* InterfaceBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				FE89AE7316B90340001FA8C8 /* signupUserViewController.xib */,
 				FE0AFCF716255A10000A92C9 /* messengerViewController.xib */,
 				FE4718411652C4B1004B4ED0 /* loginViewController.xib */,
 				FE1FCFA5166E7D7C009E61C7 /* groupsTableViewViewController.xib */,
@@ -259,6 +267,7 @@
 				FE502324167FC8F100A560EE /* friendsViewController.xib in Resources */,
 				FE57BD081693F15000B97DCF /* newPostViewController.xib in Resources */,
 				FE90F9A216ACA84B0089B34F /* Settings.bundle in Resources */,
+				FE89AE7516B90340001FA8C8 /* signupUserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +288,7 @@
 				FE57BD071693F15000B97DCF /* newPostViewController.m in Sources */,
 				FE90F9A516ACB1EC0089B34F /* BaseRESTclient.m in Sources */,
 				FE90F9A816ACC6520089B34F /* messengerRESTclient.m in Sources */,
+				FE89AE7416B90340001FA8C8 /* signupUserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

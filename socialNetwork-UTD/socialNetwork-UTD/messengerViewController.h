@@ -10,6 +10,7 @@
 #import "groupsTableViewViewController.h"
 #import "friendsViewController.h"
 #import "newPostViewController.h"
+#import "signupUserViewController.h"
 
 /*static variable declaration*/
 

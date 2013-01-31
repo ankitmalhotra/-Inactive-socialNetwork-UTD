@@ -60,14 +60,14 @@
 	[NSURLConnection connectionWithRequest:request delegate:self];
 }
 
--(int)sendMessage:(NSString *)data
+-(int)sendMessage:(double)userID:(NSString *)userName:(NSString *)password:(NSString *)emailID:(NSString *)endPointURL
 {
     NSLog(@"sendMessage in..");
     
     int retVal;
-    int dataHash = (int)data;
-    dataHash=dataHash%17;
-    NSLog(@"userid: %d",dataHash);
+    //int dataHash = (int)data;
+    //dataHash=dataHash%17;
+    //NSLog(@"userid: %d",dataHash);
 
     NSString *settingsBundle=[[NSBundle mainBundle]pathForResource:@"Settings" ofType:@"bundle"];
     if(!settingsBundle)
@@ -103,7 +103,7 @@
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSString *urlString=[defaults stringForKey:@"server_url"];
     
-    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/v2/add",urlString]];
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@/v2/%@",urlString,endPointURL]];
     NSLog(@"Sending Request to URL %@", url);
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
@@ -113,13 +113,23 @@
     NSString *contentType=[NSString stringWithFormat:@"application/XML"];
     [request addValue:contentType forHTTPHeaderField:@"Content-type"];
     
-    NSMutableData *postData=[NSMutableData data];
-    [postData appendData:[[NSString stringWithFormat:@"<user xmlns=\"http://captechventures.com/schema\">"]dataUsingEncoding:NSUTF8StringEncoding]];
-    [postData appendData:[[NSString stringWithFormat:@"<UserId>%d</UserId>",dataHash]dataUsingEncoding:NSUTF8StringEncoding]];
-    [postData appendData:[[NSString stringWithFormat:@"<UserName>%@</UserName>",data]dataUsingEncoding:NSUTF8StringEncoding]];
-    [postData appendData:[[NSString stringWithFormat:@"</user>"]dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [request setHTTPBody:postData];
+    /*Build the XML structure to send*/
+    if(endPointURL==@"add")
+    {
+        NSMutableData *postData=[NSMutableData data];
+        [postData appendData:[[NSString stringWithFormat:@"<user xmlns=\"http://appserver.utdallas.edu/schema\">"]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:[[NSString stringWithFormat:@"<UserId>%f</UserId>",userID]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:[[NSString stringWithFormat:@"<UserName>%@</UserName>",userName]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:[[NSString stringWithFormat:@"<UserPassword>%@</UserPassword>",password]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:[[NSString stringWithFormat:@"<EmailAddress>%@</EmailAddress>",emailID]dataUsingEncoding:NSUTF8StringEncoding]];
+        [postData appendData:[[NSString stringWithFormat:@"</user>"]dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:postData];
+    }
+    else if(endPointURL==@"login")
+    {
+        
+    }
+        
     
     /*Handle the synchronous response here*/
     NSError			*requestError;

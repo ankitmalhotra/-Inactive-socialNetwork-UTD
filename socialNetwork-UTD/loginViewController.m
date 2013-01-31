@@ -14,6 +14,7 @@
     /*User credentials*/
     NSString *username;
     NSString *userPwd;
+    double userId;
 }
 @end
     
@@ -33,7 +34,8 @@
     /*Accept username and password entered by user*/
     username = nameField.text;
     userPwd = passwordField.text;
-    
+    userId=(int)username;
+    userId/=17;
     /*Signal username to main view*/
     messengerViewController *obj=[[messengerViewController alloc]init];
     [obj getUserId:username];
@@ -44,7 +46,7 @@
     //[obj processRequest];
     restObj=[[messengerRESTclient alloc]init];
     /*Pass this username to server*/
-    retVal=[restObj sendMessage:username];
+    retVal=[restObj sendMessage:userId :username :userPwd :nil :@"add"];
     if (retVal==1)
     {
         /*Generate Key Pairs routine*/
@@ -64,6 +66,13 @@
         spinningView.hidden=TRUE;
         switchBackBtn.enabled=TRUE;
     }
+}
+
+/*Load new user signup view*/
+-(IBAction)signupUser
+{
+    signupUserViewController *signupObj=[[signupUserViewController alloc]initWithNibName:nil bundle:nil];
+    [self presentViewController:signupObj animated:YES completion:nil];
 }
 
 /*Resign the keyboard on pressing return*/

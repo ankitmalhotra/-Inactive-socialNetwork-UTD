@@ -15,6 +15,6 @@
 }
 
 -(void)receiveMessage:(NSString *)message;
--(int)sendMessage:(NSString *)data;
+-(int)sendMessage:(double)userID:(NSString *)userName:(NSString *)password:(NSString *)emailID:(NSString *)endPointURL;
 
 @end
